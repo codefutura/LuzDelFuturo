@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 import Presentacion.FrmConexionDB;
 import java.awt.Component;
 
-
 public class ConectarBd{   
     protected static String database ;
     protected static String servidor ;
@@ -32,12 +31,9 @@ public class ConectarBd{
     }
     
     
-    
-    
     public ConectarBd(int i){
         
     }
-    
     
     
     public boolean probarConexion(String serv,String datab,String puert,String user,String cla,Component parental){
@@ -45,7 +41,6 @@ public class ConectarBd{
         try{
             int nu;
             nu=0;
-         
             //MARIADB
             Class.forName("org.mariadb.jdbc.Driver");
             //mariadb
@@ -66,11 +61,9 @@ public class ConectarBd{
               
              conec=null;
              return false;     
-        }
-       
+        }  
         
     }
-    
     
     public static void asignarParametrosCon(String serv,String datab,String puert,String user,String cla){
         servidor=serv;
@@ -92,9 +85,7 @@ public class ConectarBd{
         }catch(SQLException ex){
           JOptionPane.showMessageDialog(null, "Error , en consulta a la base de datos -> "+ex.getMessage());} 
       return rset;
-    }
-    
-    
+    }   
 
     public void setQuery(String _query){
         try{
@@ -192,8 +183,6 @@ public class ConectarBd{
     public static String getClave() {
         return clave;
     }
-
-   
 
     
 }
