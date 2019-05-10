@@ -13,44 +13,44 @@ import java.util.Date;
  */
 public class Estudiante {
     private int Id;
-    private String Nombres;
-    private String Apellidos;
-    private Date FechaNacimiento;
-    private String Direccion;
-    private String Telefono;
-    private String Email;
+    private String nombres;
+    private String apellidos;
+    private Date fechaNacimiento;
+    private String direccion;
+    private String telefono;
+    private String email;
 
-    public Estudiante(String Nombres, String Apellidos, Date FechaNacimiento, String Direccion, String Telefono, String Email) {
-        this.Nombres = Nombres;
-        this.Apellidos = Apellidos;
-        this.FechaNacimiento = FechaNacimiento;
-        this.Direccion = Direccion;
-        this.Telefono = Telefono;
-        this.Email = Email;
+    public Estudiante(String nombres, String apellidos, Date fechaNacimiento, String direccion, String telefono, String email) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.fechaNacimiento = fechaNacimiento;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
     }
 
     public Estudiante() {
-        this.Nombres = null;
-        this.Apellidos = null;
-        this.FechaNacimiento = null;
-        this.Direccion = null;
-        this.Telefono = null;
-        this.Email = null;
+        this.nombres = null;
+        this.apellidos = null;
+        this.fechaNacimiento = null;
+        this.direccion = null;
+        this.telefono = null;
+        this.email = null;
     }
     
     
  
   
     public String getDireccion() {
-        return Direccion;
+        return direccion;
     }
 
     public String getTelefono() {
-        return Telefono;
+        return telefono;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public int getId() {
@@ -58,28 +58,28 @@ public class Estudiante {
     }
 
     public String getNombres() {
-        return Nombres;
+        return nombres;
     }
 
     public String getApellidos() {
-        return Apellidos;
+        return apellidos;
     }
 
     public Date getFechaNacimiento() {
-        return FechaNacimiento;
+        return fechaNacimiento;
     }
   
 
     public void setDireccion(String Direccion) {
-        this.Direccion = Direccion;
+        this.direccion = Direccion;
     }
 
     public void setTelefono(String Telefono) {
-        this.Telefono = Telefono;
+        this.telefono = Telefono;
     }
 
     public void setEmail(String Email) {
-        this.Email = Email;
+        this.email = Email;
     }
 
     public void setId(int Id) {
@@ -87,15 +87,15 @@ public class Estudiante {
     }
 
     public void setNombres(String Nombres) {
-        this.Nombres = Nombres;
+        this.nombres = Nombres;
     }
 
     public void setApellidos(String Apellidos) {
-        this.Apellidos = Apellidos;
+        this.apellidos = Apellidos;
     }
 
     public void setFechaNacimiento(Date FechaNacimiento) {
-        this.FechaNacimiento = FechaNacimiento;
+        this.fechaNacimiento = FechaNacimiento;
     }
 
 
