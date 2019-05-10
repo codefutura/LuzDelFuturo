@@ -11,6 +11,16 @@ package Negocio;
  */
 public class Padres {
    private String nombre;
+   
+   private String Direccion;
+    
+    private String FechaDeNacimiento;
+    
+    private String Cedula;
+    
+    private String Email;
+    
+    private int titular_pago;
 
     public String getNombre() {
         return nombre;
@@ -19,5 +29,8 @@ public class Padres {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+    
+    
    
 }
