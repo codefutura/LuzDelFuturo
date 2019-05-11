@@ -109,6 +109,29 @@ public class DbPadres {
         }
         return listaData;
     }
+    
+    public static ArrayList buscarPadresPorNombre(String buscar,boolean titular) {
+        ConectarBd con = new ConectarBd();
+        ResultSet resultado;
+        String Query = "Select * from tbl_padres where  titular_pago=true AND nombre LIKE '%" + buscar + "%' ; ";
+        resultado = con.getQuery(Query);
+        ArrayList<Object> listaData = new ArrayList<>();
+        try {
+            while (resultado.next()) {
+                listaData.add(new Object[]{resultado.getInt("id_padre"), resultado.getString("nombre"), resultado.getString("cedula"),
+                    resultado.getString("telefono")});
+            }
+            resultado.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getErrorCode());
+        } finally {
+            con.setCerrar();
+            con = null;
+        }
+        return listaData;
+    }
+
 
     /////////////////
     public static void setEliminaPadre(Integer codigo) {

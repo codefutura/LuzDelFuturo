@@ -19,18 +19,25 @@ import javax.swing.table.TableColumnModel;
 public class FrmBuscarPadres extends javax.swing.JDialog {
 
     private int idSeleccionado;
+    private boolean titular;
 
     /**
      * Creates new form FrmBuscarPadres
      *
      * @param parent
      * @param modal
+     * @param titular
      */
-    public FrmBuscarPadres(javax.swing.JDialog parent, boolean modal) {
+    public FrmBuscarPadres(javax.swing.JDialog parent, boolean modal, boolean titular) {
         super(parent, modal);
         initComponents();
         TablaPadres();
-        cargarDatos();
+
+        if (titular) {
+            cargarTitularDePago();
+        } else {
+            cargarDatos();
+        }
     }
 
     public int getIdSeleccionado() {
@@ -68,6 +75,11 @@ public class FrmBuscarPadres extends javax.swing.JDialog {
         });
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/binoculars.png"))); // NOI18N
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jTablePadres.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jTablePadres.setForeground(new java.awt.Color(0, 51, 255));
@@ -121,9 +133,9 @@ public class FrmBuscarPadres extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -151,10 +163,20 @@ public class FrmBuscarPadres extends javax.swing.JDialog {
 
     private void tBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tBuscarKeyReleased
 
-            borrarTabla(jTablePadres);
+        borrarTabla(jTablePadres);
+        
+        if (titular) {
+            cargarTitularDePago();
+        } else {
             cargarDatos();
+        }
+
 
     }//GEN-LAST:event_tBuscarKeyReleased
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -190,6 +212,15 @@ public class FrmBuscarPadres extends javax.swing.JDialog {
 
     private void cargarDatos() {
         ArrayList datos = DbPadres.buscarPadresPorNombre(tBuscar.getText());
+        DefaultTableModel model = (DefaultTableModel) jTablePadres.getModel();
+        model.setNumRows(0);
+        datos.forEach(obj -> {
+            model.addRow((Object[]) obj);
+        });
+    }
+
+    private void cargarTitularDePago() {
+        ArrayList datos = DbPadres.buscarPadresPorNombre(tBuscar.getText(), titular);
         DefaultTableModel model = (DefaultTableModel) jTablePadres.getModel();
         model.setNumRows(0);
         datos.forEach(obj -> {

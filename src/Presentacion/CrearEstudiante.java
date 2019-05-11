@@ -1,4 +1,3 @@
-
 package Presentacion;
 
 import Datos.DbEstudiante;
@@ -16,18 +15,18 @@ public class CrearEstudiante extends javax.swing.JDialog {
 
     /**
      * Creates new form CrearEstudiante
+     *
      * @param parent
      * @param modal
      */
-    DbPadres dbP=new DbPadres();
-    Padres p =new Padres();
-    DbEstudiante dbe=new DbEstudiante();
-    Estudiante e =new Estudiante();
+    DbPadres dbP = new DbPadres();
+    Padres p = new Padres();
+    DbEstudiante dbe = new DbEstudiante();
+    Estudiante e = new Estudiante();
 
-   
     public CrearEstudiante(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents(); 
+        initComponents();
     }
 
     /**
@@ -287,86 +286,82 @@ public class CrearEstudiante extends javax.swing.JDialog {
     }//GEN-LAST:event_tPadreActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-       
-       //Asignar los datos del formulario a la clase Estudiante
-       setEstudiante();
-       
-       if(tNombre.getText().isEmpty()) {
-         JOptionPane.showMessageDialog(this,"Favor ingresar el nombre");
-         return;
-       }
-        if(tDireccion.getText().isEmpty()) {
-         JOptionPane.showMessageDialog(this,"Favor ingresar una direccion");
-         return;
-       }
-       if(e.getId()>0){
-        //Insertar en la base de datos el estudiante
-        dbe.setModificaEstudiante(e,e.getId());
-       }else{
-        //Insertar en la base de datos el estudiante
-        dbe.setInsertarEstudiante(e);  
-       }
-       
-       
-       this.dispose();
-       
-        
-            
+
+        //Asignar los datos del formulario a la clase Estudiante
+        setEstudiante();
+
+        if (tNombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Favor ingresar el nombre");
+            return;
+        }
+        if (tDireccion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Favor ingresar una direccion");
+            return;
+        }
+        if (e.getId() > 0) {
+            //Insertar en la base de datos el estudiante
+            dbe.setModificaEstudiante(e, e.getId());
+        } else {
+            //Insertar en la base de datos el estudiante
+            dbe.setInsertarEstudiante(e);
+        }
+
+        this.dispose();
+
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCrearPadreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPadreActionPerformed
-       FrmPadres nuevoPadre=new FrmPadres(this,true);
-       nuevoPadre.setLocationRelativeTo(this);
-       nuevoPadre.cbSexo.setSelectedIndex(0);
-       nuevoPadre.setVisible(true);
-       if(nuevoPadre.getCodigoPadres()>0){
+        FrmPadres nuevoPadre = new FrmPadres(this, true);
+        nuevoPadre.setLocationRelativeTo(this);
+        nuevoPadre.cbSexo.setSelectedIndex(0);
+        nuevoPadre.setVisible(true);
+        if (nuevoPadre.getCodigoPadres() > 0) {
             e.setIdPadre((int) nuevoPadre.getCodigoPadres());
             tPadre.setText(nuevoPadre.tNombre.getText());
-       }
-       nuevoPadre.dispose();
-       
+        }
+        nuevoPadre.dispose();
+
     }//GEN-LAST:event_btnCrearPadreActionPerformed
 
     private void btnCrearMadreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMadreActionPerformed
-      FrmPadres nuevaMadre=new FrmPadres(this,true);
-       nuevaMadre.setLocationRelativeTo(this);
-       nuevaMadre.cbSexo.setSelectedIndex(1);
-       nuevaMadre.lbTitulo.setText("Registro de la madre");
-       nuevaMadre.pnTitulo.setBackground(Color.magenta);
-       nuevaMadre.setVisible(true);
-       
-       if(nuevaMadre.getCodigoPadres()>0){
+        FrmPadres nuevaMadre = new FrmPadres(this, true);
+        nuevaMadre.setLocationRelativeTo(this);
+        nuevaMadre.cbSexo.setSelectedIndex(1);
+        nuevaMadre.lbTitulo.setText("Registro de la madre");
+        nuevaMadre.pnTitulo.setBackground(Color.magenta);
+        nuevaMadre.setVisible(true);
+
+        if (nuevaMadre.getCodigoPadres() > 0) {
             e.setIdMadre((int) nuevaMadre.getCodigoPadres());
             tMadre.setText(nuevaMadre.tNombre.getText());
-       }
-       nuevaMadre.dispose();
+        }
+        nuevaMadre.dispose();
     }//GEN-LAST:event_btnCrearMadreActionPerformed
 
     private void btnBuscaPadreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaPadreActionPerformed
-     FrmBuscarPadres busPadres = new FrmBuscarPadres(this, true);
-     busPadres.setLocationRelativeTo(this);
-     busPadres.setVisible(true);
-     if(busPadres.getIdSeleccion()>0){
-         tPadre.setText(busPadres.getNombre());
-         e.setIdPadre(busPadres.getIdSeleccion());
-     }
-         
-     
+        FrmBuscarPadres busPadres = new FrmBuscarPadres(this, true,false);
+        busPadres.setLocationRelativeTo(this);
+        busPadres.setVisible(true);
+        if (busPadres.getIdSeleccion() > 0) {
+            tPadre.setText(busPadres.getNombre());
+            e.setIdPadre(busPadres.getIdSeleccion());
+        }
     }//GEN-LAST:event_btnBuscaPadreActionPerformed
 
     private void btnBuscaMadreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaMadreActionPerformed
-     FrmBuscarPadres busPadres = new FrmBuscarPadres(this, true);
-     busPadres.setLocationRelativeTo(this);
-     busPadres.setVisible(true);
-     if(busPadres.getIdSeleccion()>0){
-         tMadre.setText(busPadres.getNombre());
-         e.setIdMadre(busPadres.getIdSeleccion());
-     }
-         
+        FrmBuscarPadres busPadres = new FrmBuscarPadres(this, true,false);
+        busPadres.setLocationRelativeTo(this);
+        busPadres.setVisible(true);
+        if (busPadres.getIdSeleccion() > 0) {
+            tMadre.setText(busPadres.getNombre());
+            e.setIdMadre(busPadres.getIdSeleccion());
+        }
+
     }//GEN-LAST:event_btnBuscaMadreActionPerformed
 
 
@@ -395,27 +390,25 @@ public class CrearEstudiante extends javax.swing.JDialog {
     private javax.swing.JTextField tTelefono;
     // End of variables declaration//GEN-END:variables
 
-private void setEstudiante(){
-    e.setNombre(tNombre.getText());
-    e.setDireccion(tDireccion.getText());
-    e.setTelefono(tTelefono.getText());
-    e.setEmail(tEmail.getText());
-    e.setFechaNacimiento(tNacimiento.getDate());
-   
-}
+    private void setEstudiante() {
+        e.setNombre(tNombre.getText());
+        e.setDireccion(tDireccion.getText());
+        e.setTelefono(tTelefono.getText());
+        e.setEmail(tEmail.getText());
+        e.setFechaNacimiento(tNacimiento.getDate());
 
-public void mostrarDatos(Integer codigoEstudiante) {
-       dbe.mostrarEstudiante(codigoEstudiante, e);
-       
-       tNombre.setText(e.getNombre());
-       tDireccion.setText(e.getDireccion());
-       tTelefono.setText(e.getTelefono());
-       tEmail.setText(e.getEmail());
-       tNacimiento.setDate(e.getFechaNacimiento());
-       tPadre.setText(e.getNombrePadre());
-       tMadre.setText(e.getNombreMadre());
-   }
+    }
 
+    public void mostrarDatos(Integer codigoEstudiante) {
+        dbe.mostrarEstudiante(codigoEstudiante, e);
 
+        tNombre.setText(e.getNombre());
+        tDireccion.setText(e.getDireccion());
+        tTelefono.setText(e.getTelefono());
+        tEmail.setText(e.getEmail());
+        tNacimiento.setDate(e.getFechaNacimiento());
+        tPadre.setText(e.getNombrePadre());
+        tMadre.setText(e.getNombreMadre());
+    }
 
 }

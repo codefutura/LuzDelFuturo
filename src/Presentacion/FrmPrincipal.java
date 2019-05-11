@@ -95,6 +95,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCxc.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCxc.setOpaque(false);
         btnCxc.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCxc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCxcActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnCxc);
 
         btnNomina1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -178,6 +183,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
      mEstudiante.setLocationRelativeTo(this);
      mEstudiante.setVisible(true);
     }//GEN-LAST:event_btnEstudianteActionPerformed
+
+    private void btnCxcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCxcActionPerformed
+      FrmMenuCxc cxc = new FrmMenuCxc(this, true);
+      cxc.setLocationRelativeTo(this);
+      cxc.setVisible(true);
+    }//GEN-LAST:event_btnCxcActionPerformed
 
 
   
