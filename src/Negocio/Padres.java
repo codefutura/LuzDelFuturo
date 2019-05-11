@@ -5,6 +5,8 @@
  */
 package Negocio;
 
+import java.util.Date;
+
 /**
  *
  * @author michael
@@ -13,12 +15,14 @@ public class Padres {
    private int idPadre;
    private String nombre;
    private String direccion;
-   private String fechaNacimiento;
+   private Date fechaNacimiento;
    private String cedula;
    private String email;
    private boolean titularPago;
+   private String telefono;
+   
 
-    public Padres(int idPadre, String nombre, String direccion, String fechaNacimiento, String cedula, String email, boolean titularPago) {
+    public Padres(int idPadre, String nombre, String direccion,Date fechaNacimiento, String cedula, String email, boolean titularPago) {
         this.idPadre = idPadre;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -78,14 +82,14 @@ public class Padres {
     /**
      * @return the fechaNacimiento
      */
-    public String getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
     /**
      * @param fechaNacimiento the fechaNacimiento to set
      */
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -129,6 +133,20 @@ public class Padres {
      */
     public void setTitularPago(boolean titularPago) {
         this.titularPago = titularPago;
+    }
+
+    /**
+     * @return the telefono
+     */
+    public String getTelefono() {
+        return telefono;
+    }
+
+    /**
+     * @param telefono the telefono to set
+     */
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
    
 

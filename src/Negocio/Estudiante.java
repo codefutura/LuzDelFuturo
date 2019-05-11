@@ -20,6 +20,8 @@ public class Estudiante {
     private String email;
     private int idPadre;
     private int idMadre;
+    private String nombrePadre;
+    private String nombreMadre;
 
     public Estudiante(String nombre,  Date fechaNacimiento, String direccion, String telefono, String email) {
         this.nombre = nombre;
@@ -119,5 +121,22 @@ public class Estudiante {
         this.idMadre = idMadre;
     }
 
+    public String getNombrePadre() {
+        return nombrePadre;
+    }
 
+    public void setNombrePadre(String nombrePadre) {
+        this.nombrePadre = nombrePadre;
+    }
+
+    public String getNombreMadre() {
+        return nombreMadre;
+    }
+
+    public void setNombreMadre(String nombreMadre) {
+        this.nombreMadre = nombreMadre;
+    }
+
+
+    
 }

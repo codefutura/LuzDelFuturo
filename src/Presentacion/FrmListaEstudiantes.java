@@ -5,6 +5,13 @@
  */
 package Presentacion;
 
+import Datos.DbEstudiante;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+
 /**
  *
  * @author alexa
@@ -13,10 +20,15 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
 
     /**
      * Creates new form FrmListaEstudiantes
+     * @param parent
+     * @param modal
      */
     public FrmListaEstudiantes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        TablaEstudiante();
+        cargarDatos();
+        
     }
 
     /**
@@ -29,8 +41,8 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
     private void initComponents() {
 
         jspDatos = new javax.swing.JScrollPane();
-        jtListaEstudiante = new javax.swing.JTable();
-        jtfCampoBuscador = new javax.swing.JTextField();
+        jTableEstudiante = new javax.swing.JTable();
+        tBuscar = new javax.swing.JTextField();
         btnAlta = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
@@ -40,8 +52,9 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Módulo de estudiantes");
 
-        jtListaEstudiante.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jtListaEstudiante.setModel(new javax.swing.table.DefaultTableModel(
+        jTableEstudiante.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jTableEstudiante.setForeground(new java.awt.Color(15, 15, 168));
+        jTableEstudiante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -57,22 +70,44 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jspDatos.setViewportView(jtListaEstudiante);
+        jTableEstudiante.setGridColor(new java.awt.Color(45, 75, 192));
+        jTableEstudiante.setRowHeight(20);
+        jspDatos.setViewportView(jTableEstudiante);
 
-        jtfCampoBuscador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        tBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
         btnAlta.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnAlta.setText("Nuevo");
+        btnAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAltaActionPerformed(evt);
+            }
+        });
 
         btnModificar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscador.png"))); // NOI18N
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(52, 72, 150));
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -98,7 +133,7 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnEliminar))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jtfCampoBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 424, Short.MAX_VALUE))
@@ -111,10 +146,10 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtfCampoBuscador)
+                    .addComponent(tBuscar)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jspDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+                .addComponent(jspDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
@@ -126,6 +161,57 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
+       CrearEstudiante nEstudiante = new CrearEstudiante(null,true);
+       nEstudiante.setLocationRelativeTo(null);
+       nEstudiante.setVisible(true);
+       
+    }//GEN-LAST:event_btnAltaActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+      if(JOptionPane.showConfirmDialog(this, "Estas seguro que deseas eliminar el estudiante seleccionado ?",
+            "Eliminar el estudiante de la lista.", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+            int id=0;
+            try {
+                id=Integer.parseInt(String.valueOf(jTableEstudiante.getValueAt(jTableEstudiante.getSelectedRow(), 0)));
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+            DbEstudiante.setEliminaEstudiante(id);
+            jTableEstudiante.remove(jTableEstudiante.getSelectedRow());
+            
+            DefaultTableModel mod=(DefaultTableModel) jTableEstudiante.getModel();
+            mod.removeRow(jTableEstudiante.getSelectedRow());
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+
+        if( jTableEstudiante.getSelectedRow()>=0){
+            Integer codigoEstudiante;
+            if(jTableEstudiante.getSelectedRowCount()>0){
+                codigoEstudiante=Integer.parseInt(String.valueOf(jTableEstudiante.getValueAt(jTableEstudiante.getSelectedRow(), 0)));
+                CrearEstudiante mEstudiante = new CrearEstudiante(null,true);
+                mEstudiante.mostrarDatos(codigoEstudiante);
+                mEstudiante.setTitle("Modificar");
+                mEstudiante.lbTituloAzul.setText("Modificar ficha de estudiante");
+                mEstudiante.setLocationRelativeTo(null);
+                mEstudiante.setVisible(true);
+                borrarTabla(jTableEstudiante);
+                cargarDatos();
+                tBuscar.setText("");
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(this, "No hay ningún registro seleccionado ...");
+        }
+
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+      cargarDatos();
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlta;
@@ -133,8 +219,47 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTable jTableEstudiante;
     private javax.swing.JScrollPane jspDatos;
-    private javax.swing.JTable jtListaEstudiante;
-    private javax.swing.JTextField jtfCampoBuscador;
+    private javax.swing.JTextField tBuscar;
     // End of variables declaration//GEN-END:variables
+
+        public void borrarTabla(JTable tabla){
+        try {
+           DefaultTableModel model=(DefaultTableModel)tabla.getModel();
+            int filas=tabla.getRowCount();
+            for (int i = 0;filas>i; i++) {
+                model.removeRow(0);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al borrar la tabla.");
+        }
+    }
+    
+        private void TablaEstudiante() {
+            TableColumnModel columnModel = jTableEstudiante.getColumnModel();
+            columnModel.getColumn(0).setPreferredWidth(10);
+            columnModel.getColumn(1).setPreferredWidth(220);
+            columnModel.getColumn(2).setPreferredWidth(40);
+            columnModel.getColumn(3).setPreferredWidth(40);
+  
+            jTableEstudiante.setColumnModel(columnModel); 
+             //evita que muevan las columnas
+            jTableEstudiante.getTableHeader().setReorderingAllowed(false);
+        }
+        
+        
+        private void cargarDatos(){ 
+            ArrayList datos= DbEstudiante.buscarEstudiantePorNombre(tBuscar.getText());
+            DefaultTableModel model = (DefaultTableModel) jTableEstudiante.getModel();
+            model.setNumRows(0);      
+            datos.forEach(obj -> {
+                   model.addRow((Object[]) obj); 
+               }); 
+        }
+        
+
+
+
+
 }

@@ -51,6 +51,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnEstudiante.setMinimumSize(new java.awt.Dimension(96, 81));
         btnEstudiante.setOpaque(false);
         btnEstudiante.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEstudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstudianteActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnEstudiante);
 
         btnCursos.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -134,7 +139,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(218, Short.MAX_VALUE)
+                .addContainerGap(207, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addComponent(lbImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -167,6 +172,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstudianteActionPerformed
+     FrmListaEstudiantes mEstudiante = new FrmListaEstudiantes(this, true);
+     mEstudiante.setLocationRelativeTo(this);
+     mEstudiante.setVisible(true);
+    }//GEN-LAST:event_btnEstudianteActionPerformed
 
 
   
