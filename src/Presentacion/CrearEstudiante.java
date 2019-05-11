@@ -108,15 +108,19 @@ public class CrearEstudiante extends javax.swing.JDialog {
         jLabel8.setText("Madre");
 
         tNombre.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        tNombre.setForeground(new java.awt.Color(0, 51, 255));
         tNombre.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         tDireccion.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        tDireccion.setForeground(new java.awt.Color(0, 51, 255));
         tDireccion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         tTelefono.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        tTelefono.setForeground(new java.awt.Color(0, 51, 255));
         tTelefono.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         tEmail.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        tEmail.setForeground(new java.awt.Color(0, 51, 255));
         tEmail.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         tPadre.setEditable(false);
@@ -158,6 +162,7 @@ public class CrearEstudiante extends javax.swing.JDialog {
         btnCrearMadre.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnCrearMadre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/new25.png"))); // NOI18N
 
+        tNacimiento.setForeground(new java.awt.Color(0, 51, 255));
         tNacimiento.setDateFormatString("dd-mm-yyyy");
         tNacimiento.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
 
@@ -307,7 +312,7 @@ public class CrearEstudiante extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel1;
     public javax.swing.JLabel lbTituloAzul;
     private javax.swing.JTextField tDireccion;
     private javax.swing.JTextField tEmail;

@@ -6,6 +6,7 @@
 package Presentacion;
 
 import Datos.DbEstudiante;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -196,10 +197,12 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
                 mEstudiante.setTitle("Modificar");
                 mEstudiante.lbTituloAzul.setText("Modificar ficha de estudiante");
                 mEstudiante.setLocationRelativeTo(null);
+                mEstudiante.jPanel1.setBackground(Color.darkGray);
                 mEstudiante.setVisible(true);
                 borrarTabla(jTableEstudiante);
                 cargarDatos();
                 tBuscar.setText("");
+                
             }
 
         }else{
