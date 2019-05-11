@@ -12,17 +12,18 @@ import java.util.Date;
  * @author michael
  */
 public class Padres {
-   private int idPadre;
-   private String nombre;
-   private String direccion;
-   private Date fechaNacimiento;
-   private String cedula;
-   private String email;
-   private boolean titularPago;
-   private String telefono;
-   
 
-    public Padres(int idPadre, String nombre, String direccion,Date fechaNacimiento, String cedula, String email, boolean titularPago) {
+    private int idPadre;
+    private String nombre;
+    private String direccion;
+    private Date fechaNacimiento;
+    private String cedula;
+    private String email;
+    private boolean titularPago;
+    private String telefono;
+    private int Sexo;
+
+    public Padres(int idPadre, String nombre, String direccion, Date fechaNacimiento, String cedula, String email, boolean titularPago) {
         this.idPadre = idPadre;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -30,11 +31,14 @@ public class Padres {
         this.cedula = cedula;
         this.email = email;
         this.titularPago = titularPago;
-    }
-   
-    public Padres(){
 
-    };
+    }
+
+    public Padres() {
+
+    }
+
+    ;
 
 
     /**
@@ -148,11 +152,13 @@ public class Padres {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-   
 
+    public int getSexo() {
+        return Sexo;
+    }
 
-    
+    public void setSexo(int Sexo) {
+        this.Sexo = Sexo;
+    }
 
-    
-   
 }
