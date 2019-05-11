@@ -113,7 +113,7 @@ public class DbEstudiante {
         ArrayList<Object> listaData=new ArrayList<>();    
         try {
             while(resultado.next()){
-               listaData.add(new Object[]{resultado.getInt("id_estudiante"),resultado.getString("nombre")+" "+resultado.getString("direccion")
+               listaData.add(new Object[]{resultado.getInt("id_estudiante"),resultado.getString("nombre"),resultado.getString("direccion")
              ,resultado.getString("telefono")}); 
             }
             resultado.close();
