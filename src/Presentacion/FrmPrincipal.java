@@ -44,7 +44,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnEstudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/students.png"))); // NOI18N
         btnEstudiante.setText("Estudiantes");
         btnEstudiante.setBorderPainted(false);
-        btnEstudiante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEstudiante.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEstudiante.setFocusable(false);
         btnEstudiante.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEstudiante.setMaximumSize(new java.awt.Dimension(96, 81));
@@ -58,7 +58,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCursos.setText("Cursos");
         btnCursos.setToolTipText("");
         btnCursos.setBorderPainted(false);
-        btnCursos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCursos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCursos.setFocusable(false);
         btnCursos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCursos.setMaximumSize(new java.awt.Dimension(96, 81));
@@ -71,7 +71,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnNotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/student_calification.png"))); // NOI18N
         btnNotas.setText("Notas");
         btnNotas.setBorderPainted(false);
-        btnNotas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNotas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNotas.setFocusable(false);
         btnNotas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNotas.setMaximumSize(new java.awt.Dimension(96, 81));
@@ -85,7 +85,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCxc.setText("Ctas. x Cobrar");
         btnCxc.setToolTipText("");
         btnCxc.setBorderPainted(false);
-        btnCxc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCxc.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCxc.setFocusable(false);
         btnCxc.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCxc.setOpaque(false);
@@ -96,7 +96,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnNomina1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/recibo.png"))); // NOI18N
         btnNomina1.setText("Recibo");
         btnNomina1.setBorderPainted(false);
-        btnNomina1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNomina1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNomina1.setFocusable(false);
         btnNomina1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNomina1.setMaximumSize(new java.awt.Dimension(96, 81));
@@ -110,7 +110,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnNomina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/money_transfer.png"))); // NOI18N
         btnNomina.setText("Nomina");
         btnNomina.setBorderPainted(false);
-        btnNomina.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNomina.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNomina.setFocusable(false);
         btnNomina.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNomina.setMaximumSize(new java.awt.Dimension(96, 81));
