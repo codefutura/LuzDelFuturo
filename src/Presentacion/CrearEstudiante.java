@@ -5,6 +5,7 @@ import Datos.DbEstudiante;
 import Datos.DbPadres;
 import Negocio.Estudiante;
 import Negocio.Padres;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -66,7 +67,7 @@ public class CrearEstudiante extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 153));
 
-        lbTituloAzul.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbTituloAzul.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         lbTituloAzul.setForeground(new java.awt.Color(255, 255, 255));
         lbTituloAzul.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTituloAzul.setText("Nuevo estudiante");
@@ -86,16 +87,16 @@ public class CrearEstudiante extends javax.swing.JDialog {
         );
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jLabel2.setText("Nombre:");
+        jLabel2.setText("Nombre");
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jLabel3.setText("Direccion:");
+        jLabel3.setText("Direccion");
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jLabel4.setText("Telefono:");
+        jLabel4.setText("Telefono");
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jLabel5.setText("E-mail:");
+        jLabel5.setText("E-mail");
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel6.setText("F. Nacimiento");
@@ -152,15 +153,35 @@ public class CrearEstudiante extends javax.swing.JDialog {
 
         btnBuscaPadre.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnBuscaPadre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/binoculars.png"))); // NOI18N
+        btnBuscaPadre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaPadreActionPerformed(evt);
+            }
+        });
 
         btnBuscaMadre.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnBuscaMadre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/binoculars.png"))); // NOI18N
+        btnBuscaMadre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaMadreActionPerformed(evt);
+            }
+        });
 
         btnCrearPadre.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnCrearPadre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/new25.png"))); // NOI18N
+        btnCrearPadre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearPadreActionPerformed(evt);
+            }
+        });
 
         btnCrearMadre.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnCrearMadre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/new25.png"))); // NOI18N
+        btnCrearMadre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearMadreActionPerformed(evt);
+            }
+        });
 
         tNacimiento.setForeground(new java.awt.Color(0, 51, 255));
         tNacimiento.setDateFormatString("dd-mm-yyyy");
@@ -296,6 +317,57 @@ public class CrearEstudiante extends javax.swing.JDialog {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnCrearPadreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPadreActionPerformed
+       FrmPadres nuevoPadre=new FrmPadres(this,true);
+       nuevoPadre.setLocationRelativeTo(this);
+       nuevoPadre.cbSexo.setSelectedIndex(0);
+       nuevoPadre.setVisible(true);
+       if(nuevoPadre.getCodigoPadres()>0){
+            e.setIdPadre((int) nuevoPadre.getCodigoPadres());
+            tPadre.setText(nuevoPadre.tNombre.getText());
+       }
+       nuevoPadre.dispose();
+       
+    }//GEN-LAST:event_btnCrearPadreActionPerformed
+
+    private void btnCrearMadreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearMadreActionPerformed
+      FrmPadres nuevaMadre=new FrmPadres(this,true);
+       nuevaMadre.setLocationRelativeTo(this);
+       nuevaMadre.cbSexo.setSelectedIndex(1);
+       nuevaMadre.lbTitulo.setText("Registro de la madre");
+       nuevaMadre.pnTitulo.setBackground(Color.magenta);
+       nuevaMadre.setVisible(true);
+       
+       if(nuevaMadre.getCodigoPadres()>0){
+            e.setIdMadre((int) nuevaMadre.getCodigoPadres());
+            tMadre.setText(nuevaMadre.tNombre.getText());
+       }
+       nuevaMadre.dispose();
+    }//GEN-LAST:event_btnCrearMadreActionPerformed
+
+    private void btnBuscaPadreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaPadreActionPerformed
+     FrmBuscarPadres busPadres = new FrmBuscarPadres(this, true);
+     busPadres.setLocationRelativeTo(this);
+     busPadres.setVisible(true);
+     if(busPadres.getIdSeleccion()>0){
+         tPadre.setText(busPadres.getNombre());
+         e.setIdPadre(busPadres.getIdSeleccion());
+     }
+         
+     
+    }//GEN-LAST:event_btnBuscaPadreActionPerformed
+
+    private void btnBuscaMadreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaMadreActionPerformed
+     FrmBuscarPadres busPadres = new FrmBuscarPadres(this, true);
+     busPadres.setLocationRelativeTo(this);
+     busPadres.setVisible(true);
+     if(busPadres.getIdSeleccion()>0){
+         tMadre.setText(busPadres.getNombre());
+         e.setIdMadre(busPadres.getIdSeleccion());
+     }
+         
+    }//GEN-LAST:event_btnBuscaMadreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

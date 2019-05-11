@@ -18,7 +18,7 @@ import javax.swing.table.TableColumnModel;
  * @author alexa
  */
 public class FrmListaEstudiantes extends javax.swing.JDialog {
-
+     
     /**
      * Creates new form FrmListaEstudiantes
      * @param parent
@@ -31,6 +31,8 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
         cargarDatos();
         
     }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,6 +51,7 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
         btnEliminar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Módulo de estudiantes");
@@ -117,6 +120,15 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
         jLabel1.setText("Estudiantes");
         jLabel1.setOpaque(true);
 
+        btnSalir.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 51, 0));
+        btnSalir.setText("-->");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,6 +137,7 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jspDatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -137,8 +150,8 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
                                 .addComponent(tBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 424, Short.MAX_VALUE))
-                    .addComponent(jspDatos, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSalir)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -148,9 +161,10 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tBuscar)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jspDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                .addComponent(jspDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
@@ -215,52 +229,56 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
       cargarDatos();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlta;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jTableEstudiante;
     private javax.swing.JScrollPane jspDatos;
     private javax.swing.JTextField tBuscar;
     // End of variables declaration//GEN-END:variables
 
-        public void borrarTabla(JTable tabla){
+    public void borrarTabla(JTable tabla) {
         try {
-           DefaultTableModel model=(DefaultTableModel)tabla.getModel();
-            int filas=tabla.getRowCount();
-            for (int i = 0;filas>i; i++) {
+            DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+            int filas = tabla.getRowCount();
+            for (int i = 0; filas > i; i++) {
                 model.removeRow(0);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al borrar la tabla.");
         }
     }
-    
-        private void TablaEstudiante() {
-            TableColumnModel columnModel = jTableEstudiante.getColumnModel();
-            columnModel.getColumn(0).setPreferredWidth(10);
-            columnModel.getColumn(1).setPreferredWidth(220);
-            columnModel.getColumn(2).setPreferredWidth(40);
-            columnModel.getColumn(3).setPreferredWidth(40);
-  
-            jTableEstudiante.setColumnModel(columnModel); 
-             //evita que muevan las columnas
-            jTableEstudiante.getTableHeader().setReorderingAllowed(false);
-        }
-        
-        
-        private void cargarDatos(){ 
-            ArrayList datos= DbEstudiante.buscarEstudiantePorNombre(tBuscar.getText());
-            DefaultTableModel model = (DefaultTableModel) jTableEstudiante.getModel();
-            model.setNumRows(0);      
-            datos.forEach(obj -> {
-                   model.addRow((Object[]) obj); 
-               }); 
-        }
-        
+
+    private void TablaEstudiante() {
+        TableColumnModel columnModel = jTableEstudiante.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(10);
+        columnModel.getColumn(1).setPreferredWidth(220);
+        columnModel.getColumn(2).setPreferredWidth(40);
+        columnModel.getColumn(3).setPreferredWidth(40);
+
+        jTableEstudiante.setColumnModel(columnModel);
+        //evita que muevan las columnas
+        jTableEstudiante.getTableHeader().setReorderingAllowed(false);
+    }
+
+    private void cargarDatos() {
+        ArrayList datos = DbEstudiante.buscarEstudiantePorNombre(tBuscar.getText());
+        DefaultTableModel model = (DefaultTableModel) jTableEstudiante.getModel();
+        model.setNumRows(0);
+        datos.forEach(obj -> {
+            model.addRow((Object[]) obj);
+        });
+    }
+
 
 
 
