@@ -38,8 +38,6 @@ public class Padres {
 
     }
 
-    ;
-
 
     /**
      * @return the idPadre

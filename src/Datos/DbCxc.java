@@ -130,7 +130,7 @@ public class DbCxc {
     }
     ////////
 
-    public static void buscarCxcPaciente(DefaultTableModel tabla, Integer codigoPadre, Component parental) {
+    public static void buscarCxc(DefaultTableModel tabla, Integer codigoPadre, Component parental) {
         ConectarBd con = new ConectarBd();
         ResultSet resultado;
         String Query = "SELECT id_cxc, nombre_padre, id_padre,importe, pago, (importe-pago ) As balance, vence, descripcion, estado_pagado FROM tbl_cxc Where id_padre='" + codigoPadre + "' And estado_pagado='N' Order By vence ASC;";

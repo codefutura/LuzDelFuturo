@@ -43,9 +43,7 @@ public class DbPadres {
             pt.setString(6, p.getCedula());
             pt.setBoolean(7, p.isTitularPago());
             pt.setInt(8, p.getSexo());
-
             pt.executeUpdate();
-
             con.generarKey(pt);
             codigoPadre = con.getIdreturn();
             pt.close();

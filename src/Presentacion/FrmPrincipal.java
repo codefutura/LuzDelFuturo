@@ -70,6 +70,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCursos.setMinimumSize(new java.awt.Dimension(96, 81));
         btnCursos.setOpaque(false);
         btnCursos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCursos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCursosActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnCursos);
 
         btnNotas.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -190,8 +195,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
       cxc.setVisible(true);
     }//GEN-LAST:event_btnCxcActionPerformed
 
+    private void btnCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCursosActionPerformed
+       FrmRegistroCurso curso=new FrmRegistroCurso(this, true);
+       curso.setLocationRelativeTo(null);
+       curso.setVisible(true);
+    }//GEN-LAST:event_btnCursosActionPerformed
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCursos;

@@ -8,6 +8,7 @@ package Negocio;
 import com.toedter.calendar.JDateChooser;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.JOptionPane;
@@ -72,6 +73,17 @@ public class FormatoFecha {
             fech=formateador.format(dt.getDate());
          }
         return ""+fech;
+    }
+    
+   
+     
+      public static int getAnio(JDateChooser dt){
+        int anio=0;
+        if(dt.getDate()!=null){
+            SimpleDateFormat formateador = new SimpleDateFormat("yyyy",Locale.ENGLISH);
+            anio=Integer.valueOf(formateador.format(dt.getDate()));
+         }
+        return anio;
     }
 }
 
