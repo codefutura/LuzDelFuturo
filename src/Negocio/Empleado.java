@@ -20,12 +20,12 @@ public class Empleado {
     private String telefono;
     private int puesto;
     private Date fechaInicio;
-    private Decimal sueldo;
+    private double sueldo;
     private int tipoEmpleado;
     private int areaTrabajo;
 
         
-    public Empleado(int idEmpleado, String nombre, String direccion, String cedula, String telefono, int puesto, Date fechaInicio, Decimal sueldo, int tipoEmpleado, int areaTrabajo){
+    public Empleado(int idEmpleado, String nombre, String direccion, String cedula, String telefono, int puesto, Date fechaInicio, double sueldo, int tipoEmpleado, int areaTrabajo){
         this.idEmpleado = idEmpleado;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -38,6 +38,11 @@ public class Empleado {
         this.areaTrabajo = areaTrabajo;
 }
     
+    
+    
+    public Empleado(){
+        
+    }
    
 
     /**
@@ -141,14 +146,14 @@ public class Empleado {
     /**
      * @return the sueldo
      */
-    public Decimal getSueldo() {
+    public double getSueldo() {
         return sueldo;
     }
 
     /**
      * @param sueldo the sueldo to set
      */
-    public void setSueldo(Decimal sueldo) {
+    public void setSueldo(double sueldo) {
         this.sueldo = sueldo;
     }
 
@@ -180,10 +185,5 @@ public class Empleado {
         this.areaTrabajo = areaTrabajo;
     }
 
-    
-    private static class Decimal {
-
-        public Decimal() {
-        }
-    }
+   
 }

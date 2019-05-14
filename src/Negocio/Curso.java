@@ -13,9 +13,12 @@ public class Curso {
     private int tanda;
     private int capacidad;
     private int idDocente;
- 
+
     private int grado;
     private String anioEscolar;
+
+    private String nombreTanda;
+    private String nombreGrado;
 
     public Curso(String Aula, int tanda) {
         this.aula = Aula;
@@ -67,7 +70,6 @@ public class Curso {
         this.idDocente = idDocente;
     }
 
-
     public int getGrado() {
         return grado;
     }
@@ -84,5 +86,20 @@ public class Curso {
         this.anioEscolar = anioEscolar;
     }
 
-    
+    public String getNombreTanda() {
+        return nombreTanda;
+    }
+
+    public void setNombreTanda(String nombreTanda) {
+        this.nombreTanda = nombreTanda;
+    }
+
+    public String getNombreGrado() {
+        return nombreGrado;
+    }
+
+    public void setNombreGrado(String nombreGrado) {
+        this.nombreGrado = nombreGrado;
+    }
+
 }

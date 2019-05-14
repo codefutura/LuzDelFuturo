@@ -561,6 +561,9 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
         c.setTanda(cbTanda.getSelectedIndex());
         c.setGrado(cbGrado.getSelectedIndex());
         c.setAnioEscolar(tAnio.getText());
+        c.setNombreGrado(String.valueOf(cbGrado.getSelectedItem()));
+         c.setNombreTanda(String.valueOf(cbTanda.getSelectedItem()));
+        
     }
 
     private int validarIntegerTexto(JFormattedTextField f) {

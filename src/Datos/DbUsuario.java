@@ -78,7 +78,7 @@ public class DbUsuario {
             ps.executeUpdate();
             ps.close();
         } catch (SQLException ex) {
-         
+          JOptionPane.showMessageDialog(null, ex.getMessage());
         }finally{
             con.setCerrar();
         }   
@@ -97,7 +97,7 @@ public class DbUsuario {
             ps.executeUpdate();
             ps.close();
         } catch (SQLException ex) {
-           
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }finally{
             con.setCerrar();
         }
@@ -130,6 +130,7 @@ public class DbUsuario {
             rs.close();
               
         } catch (SQLException e) { 
+             JOptionPane.showMessageDialog(null, e.getMessage());
         }finally{
            con.setCerrar();  
         }

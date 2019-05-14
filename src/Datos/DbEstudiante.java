@@ -32,12 +32,11 @@ public class DbEstudiante {
             pt.setString(1,e.getNombre());
             pt.setString(2, e.getDireccion());
             pt.setString(3, e.getTelefono());
-            pt.setDate(4, new java.sql.Date(e.getFechaNacimiento().getTime()));
-          
+
             if(e.getFechaNacimiento()!=null)
-                pt.setDate(5, new java.sql.Date(e.getFechaNacimiento().getTime()));
+                pt.setDate(4, new java.sql.Date(e.getFechaNacimiento().getTime()));
             else
-                pt.setDate(5, null);
+                pt.setDate(4, null);
           
             pt.setString(5, e.getEmail());
             
@@ -163,4 +162,28 @@ public class DbEstudiante {
            Logger.getLogger(DbEstudiante.class.getName()).log(Level.SEVERE, null, ex);
          }     
     }
+    
+    
+     public static ArrayList estudianteDelCursoPublicar(int idCurso) {
+        ConectarBd con = new ConectarBd();
+        ResultSet resultado;
+        String Query = "SELECT curso.id_curso,curso.id_estudiante, es.nombre FROM tbl_estudiante_curso curso inner join tbl_estudiante es ON es.id_estudiante=curso.id_estudiante Where id_curso ="+idCurso+" ORDER BY id_estudiante_curso ASC ;";
+        resultado = con.getQuery(Query);
+        ArrayList<Object> listaData = new ArrayList<>();
+        try {
+            while (resultado.next()) {
+                listaData.add(new Object[]{resultado.getInt("id_estudiante"), resultado.getString("nombre")});
+            }
+            resultado.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getErrorCode());
+        } finally {
+            con.setCerrar();
+            con = null;
+        }
+        return listaData;
+    }
+     
+     
 }
