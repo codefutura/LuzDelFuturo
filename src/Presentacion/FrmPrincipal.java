@@ -28,13 +28,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnCursos = new javax.swing.JButton();
         btnNotas = new javax.swing.JButton();
         btnCxc = new javax.swing.JButton();
-        btnNomina1 = new javax.swing.JButton();
         btnNomina = new javax.swing.JButton();
+        btnNomina2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Luz del Futuro, sistema de gestión de colegios");
         setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -112,20 +112,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jToolBar1.add(btnCxc);
 
-        btnNomina1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        btnNomina1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/recibo.png"))); // NOI18N
-        btnNomina1.setText("Recibo");
-        btnNomina1.setBorderPainted(false);
-        btnNomina1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnNomina1.setFocusable(false);
-        btnNomina1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnNomina1.setMaximumSize(new java.awt.Dimension(96, 81));
-        btnNomina1.setMinimumSize(new java.awt.Dimension(96, 81));
-        btnNomina1.setOpaque(false);
-        btnNomina1.setPreferredSize(new java.awt.Dimension(96, 81));
-        btnNomina1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btnNomina1);
-
         btnNomina.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnNomina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/money_transfer.png"))); // NOI18N
         btnNomina.setText("Nomina");
@@ -138,6 +124,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnNomina.setOpaque(false);
         btnNomina.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btnNomina);
+
+        btnNomina2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        btnNomina2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/door50.png"))); // NOI18N
+        btnNomina2.setText("S a l i r");
+        btnNomina2.setBorderPainted(false);
+        btnNomina2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNomina2.setFocusable(false);
+        btnNomina2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnNomina2.setMaximumSize(new java.awt.Dimension(96, 81));
+        btnNomina2.setMinimumSize(new java.awt.Dimension(96, 81));
+        btnNomina2.setOpaque(false);
+        btnNomina2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNomina2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNomina2ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnNomina2);
 
         jPanel1.setBackground(new java.awt.Color(87, 140, 186));
 
@@ -214,13 +218,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
       publicar.setVisible(true);
     }//GEN-LAST:event_btnNotasActionPerformed
 
+    private void btnNomina2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNomina2ActionPerformed
+       System.exit(0);
+    }//GEN-LAST:event_btnNomina2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCursos;
     private javax.swing.JButton btnCxc;
     private javax.swing.JButton btnEstudiante;
     private javax.swing.JButton btnNomina;
-    private javax.swing.JButton btnNomina1;
+    private javax.swing.JButton btnNomina2;
     private javax.swing.JButton btnNotas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

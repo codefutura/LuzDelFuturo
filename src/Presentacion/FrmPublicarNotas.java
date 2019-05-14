@@ -18,7 +18,7 @@ import javax.swing.table.TableColumnModel;
  * @author codefutura
  */
 public class FrmPublicarNotas extends javax.swing.JDialog {
-    
+
     private int idCursoSelecionado;
     private int idEstudianteSelecionado;
 
@@ -32,7 +32,7 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         formatoRejilla();
-        
+
         tFecha.setDate(new Date());
     }
 
@@ -64,7 +64,7 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTableEstudiante.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jTableEstudiante.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTableEstudiante.setForeground(new java.awt.Color(0, 51, 204));
         jTableEstudiante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -89,9 +89,14 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
                 jTableEstudianteMousePressed(evt);
             }
         });
+        jTableEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableEstudianteKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableEstudiante);
 
-        jTableAsignatura.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jTableAsignatura.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTableAsignatura.setForeground(new java.awt.Color(0, 153, 51));
         jTableAsignatura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -158,6 +163,11 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
         jTableCursos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jTableCursosMousePressed(evt);
+            }
+        });
+        jTableCursos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableCursosKeyReleased(evt);
             }
         });
         jScrollPane3.setViewportView(jTableCursos);
@@ -284,12 +294,12 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDocenteActionPerformed
-        
+
         cargaCusosDocente(1);
     }//GEN-LAST:event_btnBuscarDocenteActionPerformed
 
     private void jTableCursosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCursosMousePressed
-        
+
         this.idCursoSelecionado = Integer.parseInt(String.valueOf(jTableCursos.getValueAt(jTableCursos.getSelectedRow(), 0)));
         cargaEstudianteDelCuso(idCursoSelecionado);
         cargaAsignaturaDelCuso(idCursoSelecionado);
@@ -305,13 +315,13 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Error, seleccione el curso");
             return;
         }
-        
+
         if (this.idEstudianteSelecionado == 0) {
             JOptionPane.showMessageDialog(this, "Error, seleccione el estudiante");
             return;
         }
         publicarNota();
-        
+
         DefaultTableModel mod = (DefaultTableModel) jTableEstudiante.getModel();
         mod.removeRow(jTableEstudiante.getSelectedRow());
         idEstudianteSelecionado = 0;
@@ -321,6 +331,35 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
     private void jTableAsignaturaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTableAsignaturaFocusLost
 
     }//GEN-LAST:event_jTableAsignaturaFocusLost
+
+    private void jTableCursosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableCursosKeyReleased
+
+        if (evt.getKeyCode() == 38 | evt.getKeyCode() == 40) {
+            this.idCursoSelecionado = Integer.parseInt(String.valueOf(jTableCursos.getValueAt(jTableCursos.getSelectedRow(), 0)));
+            cargaEstudianteDelCuso(idCursoSelecionado);
+            cargaAsignaturaDelCuso(idCursoSelecionado);
+        }
+
+        if (evt.getKeyCode() == 10) {
+            this.idCursoSelecionado = Integer.parseInt(String.valueOf(jTableCursos.getValueAt(jTableCursos.getSelectedRow(), 0)));
+            cargaEstudianteDelCuso(idCursoSelecionado);
+            cargaAsignaturaDelCuso(idCursoSelecionado);
+        }
+
+    }//GEN-LAST:event_jTableCursosKeyReleased
+
+    private void jTableEstudianteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableEstudianteKeyReleased
+
+        if (evt.getKeyCode() == 38 | evt.getKeyCode() == 40) {
+            this.idEstudianteSelecionado = Integer.parseInt(String.valueOf(jTableEstudiante.getValueAt(jTableEstudiante.getSelectedRow(), 0)));
+            limpiarTablaMateria();
+        }
+
+        if (evt.getKeyCode() == 10) {
+            this.idEstudianteSelecionado = Integer.parseInt(String.valueOf(jTableEstudiante.getValueAt(jTableEstudiante.getSelectedRow(), 0)));
+            limpiarTablaMateria();
+        }
+    }//GEN-LAST:event_jTableEstudianteKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -350,7 +389,7 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
             model.addRow((Object[]) obj);
         });
     }
-    
+
     private void cargaAsignaturaDelCuso(int id_curso) {
         ArrayList datos = dbAsignatura.asignaturasDelCursoPublicar(id_curso);
         DefaultTableModel model = (DefaultTableModel) jTableAsignatura.getModel();
@@ -359,7 +398,7 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
             model.addRow((Object[]) obj);
         });
     }
-    
+
     private void cargaEstudianteDelCuso(int id_curso) {
         ArrayList datos = DbEstudiante.estudianteDelCursoPublicar(id_curso);
         DefaultTableModel model = (DefaultTableModel) jTableEstudiante.getModel();
@@ -368,7 +407,7 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
             model.addRow((Object[]) obj);
         });
     }
-    
+
     private void formatoRejilla() {
         //Tabla de estudiante
         TableColumnModel columnModel = jTableEstudiante.getColumnModel();
@@ -385,19 +424,19 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
         jTableAsignatura.setColumnModel(colModel);
         jTableAsignatura.getTableHeader().setReorderingAllowed(false);
     }
-    
+
     private void limpiarTablaMateria() {
         int filas = jTableAsignatura.getRowCount();
         for (int i = 0; i < filas; i++) {
             jTableAsignatura.setValueAt("", i, 2);
-            
+
         }
     }
-    
+
     private void publicarNota() {
         int filas = jTableAsignatura.getRowCount();
-        int idAsignatura=0;
-        int calificacion=0;
+        int idAsignatura = 0;
+        int calificacion = 0;
         DbNota dbn = new DbNota();
         Nota n = new Nota();
         n.setIdCurso(this.idCursoSelecionado);
@@ -410,16 +449,12 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
                 return;
-            } 
+            }
             n.setIdAsignatura(idAsignatura);
             n.setCalificacion(calificacion);
             //Registrar en la base de datos
             dbn.insertarPublicacionDeNota(n);
         }
     }
-    
-    
-    
-  
-    
+
 }
