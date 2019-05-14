@@ -5,16 +5,39 @@
  */
 package Datos;
 
+import Negocio.Asignatura;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
 
 /**
  *
  * @author codefutura
  */
 public class dbAsignatura {
+    
+    public int setInsertAsignatura(Asignatura a)
+    {
+        String consulta = "INSERT INTO tbl_asignatura (descrpcion) VALUES (?);";
+        PreparedStatement pt;
+        ConectarBd con = new ConectarBd();
+        int insertadas = 0;
+        try {
+            pt = con.getConexion().prepareStatement(consulta);
+            pt.setString(1, a.getDescripcion());
+            insertadas = pt.executeUpdate();
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getErrorCode());
+        }
+        finally{
+            con.setCerrar();
+            con  =null;
+        }
+        return insertadas;
+    }
     
     public static ArrayList todasLasAsignatura() {
         ConectarBd con = new ConectarBd();
