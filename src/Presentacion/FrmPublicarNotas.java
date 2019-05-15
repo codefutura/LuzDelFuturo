@@ -54,7 +54,7 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
         jPanel8 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableCursos = new javax.swing.JTable();
-        tDocente = new javax.swing.JTextField();
+        tNombreDocente = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnBuscarDocente = new javax.swing.JButton();
         tFecha = new com.toedter.calendar.JDateChooser();
@@ -189,9 +189,11 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        tDocente.setEditable(false);
-        tDocente.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        tDocente.setFocusable(false);
+        tNombreDocente.setEditable(false);
+        tNombreDocente.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        tNombreDocente.setForeground(new java.awt.Color(0, 153, 102));
+        tNombreDocente.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        tNombreDocente.setFocusable(false);
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel1.setText("Docente");
@@ -255,7 +257,7 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
-                        .addComponent(tDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tNombreDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscarDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
@@ -272,7 +274,7 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tDocente)
+                    .addComponent(tNombreDocente)
                     .addComponent(tFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBuscarDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -294,8 +296,16 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDocenteActionPerformed
+ FrmBuscarEmpleado docente = new FrmBuscarEmpleado(this, true);
+        docente.setLocationRelativeTo(null);
+        docente.setVisible(true);
+        int idDocente=0;
 
-        cargaCusosDocente(1);
+        if (docente.confirmarSeleccion > 0) {
+            idDocente = Integer.parseInt(String.valueOf(docente.jTableEmpleado.getValueAt(docente.jTableEmpleado.getSelectedRow(), 0)));
+            tNombreDocente.setText( String.valueOf(docente.jTableEmpleado.getValueAt(docente.jTableEmpleado.getSelectedRow(), 1)));
+        }
+        cargaCusosDocente(idDocente);
     }//GEN-LAST:event_btnBuscarDocenteActionPerformed
 
     private void jTableCursosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCursosMousePressed
@@ -377,8 +387,8 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
     private javax.swing.JTable jTableAsignatura;
     private javax.swing.JTable jTableCursos;
     private javax.swing.JTable jTableEstudiante;
-    private javax.swing.JTextField tDocente;
     private com.toedter.calendar.JDateChooser tFecha;
+    private javax.swing.JTextField tNombreDocente;
     // End of variables declaration//GEN-END:variables
 
     private void cargaCusosDocente(int id_docente) {

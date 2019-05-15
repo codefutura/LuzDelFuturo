@@ -56,7 +56,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
         tNombre.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         tNombre.setForeground(new java.awt.Color(0, 0, 255));
-        tNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         btnIniciarSesion.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnIniciarSesion.setText("Iniciar Sesión");
@@ -79,13 +79,13 @@ public class FrmLogin extends javax.swing.JFrame {
 
         tClave.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         tClave.setForeground(new java.awt.Color(0, 0, 255));
-        tClave.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tClave.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         jPanel1.setBackground(new java.awt.Color(68, 174, 209));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 28)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(50, 70, 132));
+        jLabel4.setForeground(new java.awt.Color(5, 95, 132));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Colegio Luz del Futuro");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 390, 40));
@@ -94,11 +94,12 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 160, 150));
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setForeground(new java.awt.Color(16, 92, 122));
         jLabel5.setText("E-mail.: luzdelfuturo@gmail.com");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 280, -1));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(16, 92, 122));
         jLabel6.setText("Tel.:809-584-3601");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 280, -1));
 
