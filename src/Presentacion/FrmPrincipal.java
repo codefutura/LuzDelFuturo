@@ -123,6 +123,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnNomina.setMinimumSize(new java.awt.Dimension(96, 81));
         btnNomina.setOpaque(false);
         btnNomina.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNomina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNominaActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnNomina);
 
         btnNomina2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -221,6 +226,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnNomina2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNomina2ActionPerformed
        System.exit(0);
     }//GEN-LAST:event_btnNomina2ActionPerformed
+
+    private void btnNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNominaActionPerformed
+       FrmMenuNomina nomina=new FrmMenuNomina(this,true);
+       nomina.setLocationRelativeTo(this);
+       nomina.setVisible(true);
+    }//GEN-LAST:event_btnNominaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
