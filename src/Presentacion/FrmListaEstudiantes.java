@@ -57,7 +57,7 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
         setTitle("Módulo de estudiantes");
 
         jTableEstudiante.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jTableEstudiante.setForeground(new java.awt.Color(0, 51, 255));
+        jTableEstudiante.setForeground(new java.awt.Color(15, 15, 168));
         jTableEstudiante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -106,14 +106,14 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/binoculars.png"))); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscador.png"))); // NOI18N
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(78, 135, 173));
+        jLabel1.setBackground(new java.awt.Color(52, 72, 150));
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -177,7 +177,7 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
-       CrearEstudiante nEstudiante = new CrearEstudiante(this,true);
+       CrearEstudiante nEstudiante = new CrearEstudiante(null,true);
        nEstudiante.setLocationRelativeTo(null);
        nEstudiante.setVisible(true);
        
@@ -206,7 +206,7 @@ public class FrmListaEstudiantes extends javax.swing.JDialog {
             Integer codigoEstudiante;
             if(jTableEstudiante.getSelectedRowCount()>0){
                 codigoEstudiante=Integer.parseInt(String.valueOf(jTableEstudiante.getValueAt(jTableEstudiante.getSelectedRow(), 0)));
-                CrearEstudiante mEstudiante = new CrearEstudiante(this,true);
+                CrearEstudiante mEstudiante = new CrearEstudiante(null,true);
                 mEstudiante.mostrarDatos(codigoEstudiante);
                 mEstudiante.setTitle("Modificar");
                 mEstudiante.lbTituloAzul.setText("Modificar ficha de estudiante");

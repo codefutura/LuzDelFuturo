@@ -28,12 +28,6 @@ public class CrearEstudiante extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
-    
-    public CrearEstudiante(javax.swing.JDialog parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,7 +64,7 @@ public class CrearEstudiante extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(83, 173, 203));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 153));
 
         lbTituloAzul.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         lbTituloAzul.setForeground(new java.awt.Color(255, 255, 255));
@@ -116,22 +110,18 @@ public class CrearEstudiante extends javax.swing.JDialog {
         tNombre.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         tNombre.setForeground(new java.awt.Color(0, 51, 255));
         tNombre.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        tNombre.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
         tDireccion.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         tDireccion.setForeground(new java.awt.Color(0, 51, 255));
         tDireccion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        tDireccion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
         tTelefono.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         tTelefono.setForeground(new java.awt.Color(0, 51, 255));
         tTelefono.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        tTelefono.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
         tEmail.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         tEmail.setForeground(new java.awt.Color(0, 51, 255));
         tEmail.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        tEmail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
         tPadre.setEditable(false);
         tPadre.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -177,7 +167,7 @@ public class CrearEstudiante extends javax.swing.JDialog {
         });
 
         btnCrearPadre.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        btnCrearPadre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/new.png"))); // NOI18N
+        btnCrearPadre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/new25.png"))); // NOI18N
         btnCrearPadre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearPadreActionPerformed(evt);
@@ -185,7 +175,7 @@ public class CrearEstudiante extends javax.swing.JDialog {
         });
 
         btnCrearMadre.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        btnCrearMadre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/new.png"))); // NOI18N
+        btnCrearMadre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/new25.png"))); // NOI18N
         btnCrearMadre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearMadreActionPerformed(evt);

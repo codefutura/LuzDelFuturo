@@ -7,6 +7,7 @@ import java.awt.Component;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,11 +17,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DbCxc {
 
-    public int crearCuentaCobrar(Cxc c) {
+    public void crearCuentaCobrar(Cxc c) {
         ConectarBd con = new ConectarBd();
-        String consulta = "INSERT INTO tbl_cxc (nombre_padre, id_padre, fecha, importe, vence,descripcion,mensualidad,id_estudiante) VALUES ( ?, ?, ?, ?, ?, ?,?,?);";
+        String consulta = "INSERT INTO tbl_cxc (nombre_padre, id_padre, fecha, importe, vence,descripcion) VALUES ( ?, ?, ?, ?, ?, ?);";
         PreparedStatement ps;
-        int insertada = 0;
         try {
             ps = con.getConexion().prepareStatement(consulta);
             ps.setString(1, c.getNombrePadre());
@@ -29,9 +29,7 @@ public class DbCxc {
             ps.setDouble(4, c.getImporte());
             ps.setDate(5, new java.sql.Date(c.getFechaVence().getTime()));
             ps.setString(6, c.getConcepto());
-            ps.setDouble(7, c.getMensualidad());
-            ps.setDouble(8, c.getEstudiante());
-            insertada = ps.executeUpdate();
+            ps.executeUpdate();
 
             ps.close();
             con.setCerrar();
@@ -39,14 +37,16 @@ public class DbCxc {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        return insertada;
+
     }
     ///////
 
-    public int modificarCuentaCobrar(Cxc c, Integer codigoCxc) {
-        int modificada = 0;
+   
+    ///////
+
+    public void modificarCuentaCobrar(Cxc c, Integer codigoCxc) {
         ConectarBd con = new ConectarBd();
-        String consulta = "UPDATE tbl_cxc SET nombre_padre=?, id_padre=?, fecha=?, importe=?, vence=?, descripcion=?,mensualidad=?,id_estudiante=? WHERE id_cxc=?;";
+        String consulta = "UPDATE tbl_cxc SET nombre_padre=?, id_padre=?, fecha=?, importe=?, vence=?, descripcion=? WHERE id_cxc=?;";
         PreparedStatement ps;
         try {
             ps = con.getConexion().prepareStatement(consulta);
@@ -58,18 +58,18 @@ public class DbCxc {
 
             ps.setString(6, c.getConcepto());
 
-            ps.setDouble(7, c.getMensualidad());
-            ps.setDouble(8, c.getEstudiante());
+            ps.setInt(7, codigoCxc);
+            if (ps.executeUpdate() == 1) {
+                JOptionPane.showMessageDialog(null, "Cuenta actualizada correctamente...");
+            }
 
-            ps.setInt(9, codigoCxc);
-            modificada = ps.executeUpdate();
             ps.close();
             con.setCerrar();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        return modificada;
+
     }
     /////////////////
 
@@ -84,7 +84,7 @@ public class DbCxc {
     public void CxcPorCodigo(Integer codigoCxc, Cxc c, Component parental) {
         ConectarBd con = new ConectarBd();
         ResultSet rs;
-        String Query = "SELECT id_cxc, nombre_padre, tbl_cxc.id_padre, fecha, importe, pago,(importe-pago ) As balance ,vence,descripcion, estado_pagado,mensualidad,tbl_cxc.id_estudiante,es.nombre as nombre_estudiante FROM tbl_cxc  left join tbl_estudiante es ON es.id_estudiante=tbl_cxc.id_estudiante Where id_cxc='" + codigoCxc + "';";
+        String Query = "SELECT id_cxc, nombre_padre, id_padre, fecha, importe, pago,(importe-pago ) As balance ,vence,descripcion, estado_pagado FROM tbl_cxc Where id_cxc='" + codigoCxc + "';";
         rs = con.getQuery(Query);
         try {
             while (rs.next()) {
@@ -97,9 +97,6 @@ public class DbCxc {
                 c.setImportePagado(rs.getDouble("pago"));
                 c.setNombrePadre(rs.getString("nombre_padre"));
                 c.setBalance(rs.getDouble("balance"));
-                c.setMensualidad(rs.getDouble("mensualidad"));
-                c.setEstudiante(rs.getInt("id_estudiante"));
-                c.setNombreEstudiante(rs.getString("nombre_estudiante"));
             }
             rs.close();
             con.setCerrar();
