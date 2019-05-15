@@ -162,6 +162,7 @@ public class FrmLogin extends javax.swing.JFrame {
         
       FrmPrincipal pv = new FrmPrincipal();
       pv.setLocationRelativeTo(null);
+      pv.setExtendedState(MAXIMIZED_BOTH);
       pv.setVisible(true);
       
       this.dispose();

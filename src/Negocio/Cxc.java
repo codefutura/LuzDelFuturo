@@ -18,6 +18,9 @@ public class Cxc {
     private String nombrePadre, concepto;
     private int codigoTipo;
     private Date fechaAlta, fechaVence;
+    private double mensualidad;
+    private int estudiante;
+    private String nombreEstudiante;
 
     //Constructor
     public Cxc() {
@@ -111,5 +114,31 @@ public class Cxc {
     public void setFechaVence(Date fechaVence) {
         this.fechaVence = fechaVence;
     }
+
+    public double getMensualidad() {
+        return mensualidad;
+    }
+
+    public void setMensualidad(double mensualidad) {
+        this.mensualidad = mensualidad;
+    }
+
+    public int getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(int estudiante) {
+        this.estudiante = estudiante;
+    }
+
+    public String getNombreEstudiante() {
+        return nombreEstudiante;
+    }
+
+    public void setNombreEstudiante(String nombreEstudiante) {
+        this.nombreEstudiante = nombreEstudiante;
+    }
+    
+    
 
 }

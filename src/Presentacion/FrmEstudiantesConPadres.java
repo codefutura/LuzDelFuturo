@@ -4,12 +4,13 @@ import Datos.DbEstudiante;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
  * @author alexa
  */
-public class FrmBuscarEstudiante extends javax.swing.JDialog {
+public class FrmEstudiantesConPadres extends javax.swing.JDialog {
 
     public int confirmarSeleccion;
 
@@ -19,10 +20,11 @@ public class FrmBuscarEstudiante extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
-    public FrmBuscarEstudiante(javax.swing.JDialog parent, boolean modal) {
+    public FrmEstudiantesConPadres(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
 
         initComponents();
+        formatoRejilla();
         cargarDatos();
     }
 
@@ -84,11 +86,11 @@ public class FrmBuscarEstudiante extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Nombre", "Dirección", "Teléfono"
+                "Código", "Nombre", "id_padre", "id_madre", "nombre_padre", "nombre_madre", "padre_titualPago", "madre_titualPago"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -200,12 +202,42 @@ public class FrmBuscarEstudiante extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void cargarDatos() {
-        ArrayList datos = DbEstudiante.buscarEstudiantePorNombre(tBuscar.getText());
+        ArrayList datos = DbEstudiante.buscarEstudianteConPadres(tBuscar.getText());
         DefaultTableModel model = (DefaultTableModel) jTableEstudiante.getModel();
         model.setNumRows(0);
         datos.forEach(obj -> {
             model.addRow((Object[]) obj);
         });
+    }
+
+    private void formatoRejilla() {
+        //Tabla de estudiante
+        TableColumnModel columnModel = jTableEstudiante.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(10);
+        columnModel.getColumn(1).setPreferredWidth(200);
+        columnModel.getColumn(2).setPreferredWidth(0);
+        columnModel.getColumn(2).setMinWidth(0);
+        columnModel.getColumn(2).setMaxWidth(0);
+
+        columnModel.getColumn(3).setPreferredWidth(0);
+        columnModel.getColumn(3).setMinWidth(0);
+        columnModel.getColumn(3).setMaxWidth(0);
+        columnModel.getColumn(4).setPreferredWidth(0);
+        columnModel.getColumn(4).setMinWidth(0);
+        columnModel.getColumn(4).setMaxWidth(0);
+        columnModel.getColumn(5).setPreferredWidth(0);
+        columnModel.getColumn(5).setMinWidth(0);
+        columnModel.getColumn(5).setMaxWidth(0);
+        columnModel.getColumn(6).setPreferredWidth(0);
+        columnModel.getColumn(6).setMinWidth(0);
+        columnModel.getColumn(6).setMaxWidth(0);
+        columnModel.getColumn(7).setPreferredWidth(0);
+        columnModel.getColumn(7).setMinWidth(0);
+        columnModel.getColumn(7).setMaxWidth(0);
+
+        jTableEstudiante.setColumnModel(columnModel);
+        jTableEstudiante.getTableHeader().setReorderingAllowed(false);
+
     }
 
 }

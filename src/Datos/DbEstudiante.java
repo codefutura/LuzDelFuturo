@@ -126,6 +126,30 @@ public class DbEstudiante {
         return listaData;
     }
     
+    
+      ////////// Utlizar para cargar los datos en rejilla con los padres del estudiantes //////////
+    public static ArrayList buscarEstudianteConPadres(String buscar){
+        ConectarBd con= new ConectarBd();
+        ResultSet resultado;
+        String Query="Select e.id_estudiante,e.nombre as nombre_estudiante,e.id_padre,e.id_madre,p.nombre as nombre_padre,p.titular_pago as tit_padre, m.nombre as nombre_madre,m.titular_pago as tit_madre from tbl_estudiante e  left join tbl_padres p ON p.id_padre=e.id_padre left join tbl_padres m ON m.id_padre=e.id_madre where e.nombre LIKE '%"+buscar+"%'; ";
+        resultado=con.getQuery(Query);
+        ArrayList<Object> listaData=new ArrayList<>();    
+        try {
+            while(resultado.next()){
+               listaData.add(new Object[]{resultado.getInt("id_estudiante"),resultado.getString("nombre_estudiante"),resultado.getInt("id_padre")
+             ,resultado.getInt("id_madre"),resultado.getString("nombre_padre"),resultado.getString("nombre_madre"),resultado.getInt("tit_padre"),resultado.getInt("tit_madre")}); 
+            }
+            resultado.close();
+        
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getErrorCode());
+        }finally{
+            con.setCerrar();
+            con=null;
+        } 
+        return listaData;
+    }
+    
     /////////////////
      public static void setEliminaEstudiante(Integer codigo){
         ConectarBd con= new ConectarBd();
@@ -162,7 +186,6 @@ public class DbEstudiante {
            Logger.getLogger(DbEstudiante.class.getName()).log(Level.SEVERE, null, ex);
          }     
     }
-    
     
      public static ArrayList estudianteDelCursoPublicar(int idCurso) {
         ConectarBd con = new ConectarBd();
