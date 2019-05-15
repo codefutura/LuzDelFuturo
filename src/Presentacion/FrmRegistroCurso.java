@@ -18,6 +18,7 @@ import javax.swing.table.TableColumnModel;
  */
 public class FrmRegistroCurso extends javax.swing.JDialog {
 
+    private int idDocente;
     Curso c = new Curso();
     DbCurso dc = new DbCurso();
 
@@ -80,7 +81,10 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         tCapacidad = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
+        tNombreDocente = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         tAnio = new javax.swing.JTextField();
+        btnDocente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -146,6 +150,7 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
         });
 
         btnEliminarSeleccionado3.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        btnEliminarSeleccionado3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/delete_1.png"))); // NOI18N
         btnEliminarSeleccionado3.setText("Cancelar");
         btnEliminarSeleccionado3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,7 +236,7 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
                 .addComponent(btnRetirar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +248,7 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
                         .addComponent(btnAgregar))
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jspDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
+                .addComponent(jspDatos, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
         );
 
         jTabCurso.addTab("Estudiantes", jPanel1);
@@ -295,7 +300,7 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAgregar1)
@@ -314,12 +319,13 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
                     .addComponent(btnAgregar1)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
         );
 
         jTabCurso.addTab("Asignaturas", jPanel2);
 
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save_close.png"))); // NOI18N
         jButton1.setText("Registrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -336,10 +342,25 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel8.setText("Año");
 
+        tNombreDocente.setEditable(false);
+        tNombreDocente.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        tNombreDocente.setForeground(new java.awt.Color(0, 153, 51));
+        tNombreDocente.setDisabledTextColor(new java.awt.Color(0, 153, 51));
+
+        jLabel9.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel9.setText("Docente");
+
         tAnio.setEditable(false);
         tAnio.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         tAnio.setForeground(new java.awt.Color(0, 153, 51));
         tAnio.setDisabledTextColor(new java.awt.Color(0, 153, 51));
+
+        btnDocente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/binoculars.png"))); // NOI18N
+        btnDocente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDocenteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -354,33 +375,41 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnEliminarSeleccionado3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tAnio))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cbTanda, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tAula, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbTanda, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tAula, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
+                                .addComponent(tAnio)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tCapacidad))
-                            .addComponent(cbGrado, 0, 272, Short.MAX_VALUE)
-                            .addComponent(tFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tCapacidad))
+                                    .addComponent(cbGrado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(1, 1, 1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tNombreDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
@@ -388,31 +417,40 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(tAula, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbTanda, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tAula, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(cbGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbTanda, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(tCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tNombreDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabCurso)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -425,27 +463,27 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
-     if (JOptionPane.showConfirmDialog(this, "Estas seguro que deseas borrar la asignatura de este curso ?",
-                    "Borrado de asignatura del curso", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                DefaultTableModel mod = (DefaultTableModel) jTableEstudiante.getModel();
-                mod.removeRow(jTableEstudiante.getSelectedRow());
-            }
+        if (JOptionPane.showConfirmDialog(this, "Estas seguro que deseas borrar la asignatura de este curso ?",
+                "Borrado de asignatura del curso", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            DefaultTableModel mod = (DefaultTableModel) jTableEstudiante.getModel();
+            mod.removeRow(jTableEstudiante.getSelectedRow());
+        }
     }//GEN-LAST:event_btnRetirarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
- 
-            FrmBuscarEstudiante bEstudiante = new FrmBuscarEstudiante(this, true);
-            bEstudiante.setLocationRelativeTo(null);
-            bEstudiante.setVisible(true);
-            
-            if (bEstudiante.confirmarSeleccion > 0) {
-                DefaultTableModel model = (DefaultTableModel) jTableEstudiante.getModel();
-                int codEstudiante = Integer.parseInt(String.valueOf(bEstudiante.jTableEstudiante.getValueAt(bEstudiante.jTableEstudiante.getSelectedRow(), 0)));
-                String nombreEstudiante = String.valueOf(bEstudiante.jTableEstudiante.getValueAt(bEstudiante.jTableEstudiante.getSelectedRow(), 1));
 
-                model.addRow(new Object[]{codEstudiante, nombreEstudiante});
-            }
-       
+        FrmBuscarEstudiante bEstudiante = new FrmBuscarEstudiante(this, true);
+        bEstudiante.setLocationRelativeTo(null);
+        bEstudiante.setVisible(true);
+
+        if (bEstudiante.confirmarSeleccion > 0) {
+            DefaultTableModel model = (DefaultTableModel) jTableEstudiante.getModel();
+            int codEstudiante = Integer.parseInt(String.valueOf(bEstudiante.jTableEstudiante.getValueAt(bEstudiante.jTableEstudiante.getSelectedRow(), 0)));
+            String nombreEstudiante = String.valueOf(bEstudiante.jTableEstudiante.getValueAt(bEstudiante.jTableEstudiante.getSelectedRow(), 1));
+
+            model.addRow(new Object[]{codEstudiante, nombreEstudiante});
+        }
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarSeleccionado3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarSeleccionado3ActionPerformed
@@ -462,9 +500,14 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Seleccione la fecha de inicio del año escolar");
             return;
         }
+        
+        if (this.idDocente==0) {
+            JOptionPane.showMessageDialog(this, "Seleccione el docente de este curso");
+            return;
+        }
 
         setCurso();
-        
+
         if (c.getId_curso() == 0) {
             long idCurso = dc.setInsertarCurso(c);
             if (jTableAsignatura.getRowCount() > 0) {
@@ -474,12 +517,12 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
             if (jTableEstudiante.getRowCount() > 0) {
                 inscribirEstudiante(idCurso);
             }
-            
-            if(idCurso>0){
+
+            if (idCurso > 0) {
                 JOptionPane.showMessageDialog(this, "El curso ha sido registrado correctamente");
             }
         }
-        
+
         this.dispose();
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -512,20 +555,36 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
     }//GEN-LAST:event_jTabCursoMouseClicked
 
     private void btnRetirar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirar1ActionPerformed
-       if (JOptionPane.showConfirmDialog(this, "Estas seguro que deseas borrar la asignatura de este curso ?",
-                    "Borrado de asignatura del curso", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                DefaultTableModel mod = (DefaultTableModel) jTableAsignatura.getModel();
-                mod.removeRow(jTableAsignatura.getSelectedRow());
-            }
+        if (JOptionPane.showConfirmDialog(this, "Estas seguro que deseas borrar la asignatura de este curso ?",
+                "Borrado de asignatura del curso", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            DefaultTableModel mod = (DefaultTableModel) jTableAsignatura.getModel();
+            mod.removeRow(jTableAsignatura.getSelectedRow());
+        }
     }//GEN-LAST:event_btnRetirar1ActionPerformed
 
     private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregar1ActionPerformed
 
+    private void btnDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocenteActionPerformed
+        FrmBuscarEmpleado docente = new FrmBuscarEmpleado(this, true);
+        docente.setLocationRelativeTo(null);
+        docente.setVisible(true);
+
+        if (docente.confirmarSeleccion > 0) {
+
+            this.idDocente = Integer.parseInt(String.valueOf(docente.jTableEmpleado.getValueAt(docente.jTableEmpleado.getSelectedRow(), 0)));
+            String nombreDocente = String.valueOf(docente.jTableEmpleado.getValueAt(docente.jTableEmpleado.getSelectedRow(), 1));
+
+            tNombreDocente.setText(nombreDocente);
+        }
+
+    }//GEN-LAST:event_btnDocenteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAgregar1;
+    private javax.swing.JButton btnDocente;
     private javax.swing.JButton btnEliminarSeleccionado3;
     private javax.swing.JButton btnRetirar;
     private javax.swing.JButton btnRetirar1;
@@ -540,6 +599,7 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -553,6 +613,7 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
     public javax.swing.JTextField tAula;
     private javax.swing.JFormattedTextField tCapacidad;
     private com.toedter.calendar.JDateChooser tFecha;
+    private javax.swing.JTextField tNombreDocente;
     // End of variables declaration//GEN-END:variables
 
     private void setCurso() {
@@ -562,8 +623,9 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
         c.setGrado(cbGrado.getSelectedIndex());
         c.setAnioEscolar(tAnio.getText());
         c.setNombreGrado(String.valueOf(cbGrado.getSelectedItem()));
-         c.setNombreTanda(String.valueOf(cbTanda.getSelectedItem()));
-        
+        c.setNombreTanda(String.valueOf(cbTanda.getSelectedItem()));
+        c.setIdDocente(this.idDocente);
+
     }
 
     private int validarIntegerTexto(JFormattedTextField f) {

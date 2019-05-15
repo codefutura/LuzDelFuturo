@@ -86,10 +86,10 @@ public class DbEmpleado {
     } 
     
    ////////// Utlizar para cargar los datos en rejilla //////////
-    public static ArrayList buscarEmpleado(String where){
+    public static ArrayList buscarEmpleado(String buscar){
         ConectarBd con= new ConectarBd();
         ResultSet resultado;
-        String Query="Select * from tbl_empleado " + where;
+        String Query="Select * from tbl_empleado Where nombre LIKE '%"+buscar+"%' AND tipo_empleado=0";
         resultado=con.getQuery(Query);
         ArrayList<Object> listaData=new ArrayList<>();    
         try {
