@@ -5,20 +5,33 @@
  */
 package Presentacion;
 
+import Datos.DbDeduccion;
+import Negocio.Deducion;
+import java.util.Date;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author codefutura
  */
 public class FrmDeduccion extends javax.swing.JDialog {
 
+    private int idEmpleado;
+    Deducion d = new Deducion();
+    DbDeduccion dbd = new DbDeduccion();
+
     /**
      * Creates new form FrmDeduccion
+     *
      * @param parent
      * @param modal
      */
-    public FrmDeduccion(java.awt.Frame parent, boolean modal) {
+    public FrmDeduccion(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        tFecha.setDate(new Date());
     }
 
     /**
@@ -30,24 +43,236 @@ public class FrmDeduccion extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jBGuardar = new javax.swing.JButton();
+        jBCancelar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        tFecha = new com.toedter.calendar.JDateChooser();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        tMonto = new javax.swing.JFormattedTextField();
+        tNombreEmpleado = new javax.swing.JTextField();
+        btnDocente = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tDescripcion = new javax.swing.JTextArea();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(117, 159, 176));
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Nueva deducción");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jBGuardar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jBGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/new.png"))); // NOI18N
+        jBGuardar.setText("Guardar");
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
+
+        jBCancelar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/delete_1.png"))); // NOI18N
+        jBCancelar.setText("Cancelar");
+        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCancelarActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel2.setText("Fecha");
+
+        tFecha.setDateFormatString("dd-MM-yyyy");
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel3.setText("Empleado");
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel4.setText("Descripción");
+        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel5.setText("Monto");
+
+        tMonto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+
+        tNombreEmpleado.setEditable(false);
+        tNombreEmpleado.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        tNombreEmpleado.setForeground(new java.awt.Color(0, 153, 51));
+        tNombreEmpleado.setDisabledTextColor(new java.awt.Color(0, 153, 51));
+
+        btnDocente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/binoculars.png"))); // NOI18N
+        btnDocente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDocenteActionPerformed(evt);
+            }
+        });
+
+        tDescripcion.setColumns(20);
+        tDescripcion.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        tDescripcion.setForeground(new java.awt.Color(0, 51, 255));
+        tDescripcion.setRows(5);
+        jScrollPane2.setViewportView(tDescripcion);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 635, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(tNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBGuardar)
+                        .addGap(210, 210, 210)
+                        .addComponent(jBCancelar))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnDocente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tNombreEmpleado)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-  
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+
+        if (tDescripcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Favor ingresar la descripcion");
+            return;
+        }
+
+        if (this.idEmpleado == 0) {
+            JOptionPane.showMessageDialog(this, "Favor ingresar el empleado");
+            return;
+        }
+        
+        setDeduccion();
+        
+        if (dbd.setInsertarEstudiante(d) > 0) {
+            JOptionPane.showMessageDialog(this, "Deducción Insertada Correctamente");
+        };
+
+       
+
+        dbd = null;
+        d = null;
+        this.dispose();
+    }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jBCancelarActionPerformed
+
+    private void btnDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocenteActionPerformed
+        FrmBuscarTodoEmpleado empleado = new FrmBuscarTodoEmpleado(this, true);
+        empleado.setLocationRelativeTo(null);
+        empleado.setVisible(true);
+
+        if (empleado.confirmarSeleccion > 0) {
+
+            this.idEmpleado = Integer.parseInt(String.valueOf(empleado.jTableEmpleado.getValueAt(empleado.jTableEmpleado.getSelectedRow(), 0)));
+            String nombreDocente = String.valueOf(empleado.jTableEmpleado.getValueAt(empleado.jTableEmpleado.getSelectedRow(), 1));
+
+            tNombreEmpleado.setText(nombreDocente);
+        }
+    }//GEN-LAST:event_btnDocenteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDocente;
+    private javax.swing.JButton jBCancelar;
+    private javax.swing.JButton jBGuardar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea tDescripcion;
+    private com.toedter.calendar.JDateChooser tFecha;
+    private javax.swing.JFormattedTextField tMonto;
+    private javax.swing.JTextField tNombreEmpleado;
     // End of variables declaration//GEN-END:variables
+
+    private void setDeduccion() {
+        d.setDescripcion(tDescripcion.getText());
+        d.setIdEmpleado(this.idEmpleado);
+        d.setFecha(tFecha.getDate());
+        d.setMonto(validarDoubleTexto(tMonto));
+
+    }
+
+    private double validarDoubleTexto(JFormattedTextField f) {
+        double valor = 0;
+        try {
+            valor = Double.parseDouble(String.valueOf(f.getText()));
+        } catch (NumberFormatException e) {
+        }
+
+        return valor;
+    }
+
 }

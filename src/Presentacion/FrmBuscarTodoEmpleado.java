@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Presentacion;
 
 import Datos.DbEmpleado;
@@ -12,19 +8,19 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author delvy
+ * @author codefutura
  */
-public class FrmBuscarEmpleado extends javax.swing.JDialog {
+public class FrmBuscarTodoEmpleado extends javax.swing.JDialog {
 
     /**
      * Creates new form FrmBuscarEmpleado
      */
     public int confirmarSeleccion;
 
-    public FrmBuscarEmpleado(javax.swing.JDialog parent, boolean modal) {
+    public FrmBuscarTodoEmpleado(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
-
         initComponents();
+       
 
     }
 
@@ -44,7 +40,6 @@ public class FrmBuscarEmpleado extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         tBuscar = new javax.swing.JTextField();
-        btnAgregar = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -69,7 +64,7 @@ public class FrmBuscarEmpleado extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Nombre", "Dirección", "Teléfono"
+                "Código", "Nombre", "Cédula", "Teléfono"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -125,11 +120,6 @@ public class FrmBuscarEmpleado extends javax.swing.JDialog {
             }
         });
 
-        btnAgregar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/new.png"))); // NOI18N
-        btnAgregar.setText("Nuevo docente");
-        btnAgregar.setToolTipText("");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,19 +136,16 @@ public class FrmBuscarEmpleado extends javax.swing.JDialog {
                         .addComponent(tBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAgregar)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                    .addComponent(btnAgregar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addGap(11, 11, 11)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -196,7 +183,6 @@ public class FrmBuscarEmpleado extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalir;
@@ -207,7 +193,7 @@ public class FrmBuscarEmpleado extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void cargarDatos() {
-        ArrayList datos = DbEmpleado.buscarEmpleado(tBuscar.getText());
+        ArrayList datos = DbEmpleado.buscarTodoEmpleado(tBuscar.getText());
         DefaultTableModel model = (DefaultTableModel) jTableEmpleado.getModel();
         model.setNumRows(0);
         datos.forEach(obj -> {

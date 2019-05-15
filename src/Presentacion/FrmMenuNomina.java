@@ -93,6 +93,11 @@ public class FrmMenuNomina extends javax.swing.JDialog {
         btnDeducciones.setContentAreaFilled(false);
         btnDeducciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDeducciones.setFocusPainted(false);
+        btnDeducciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeduccionesActionPerformed(evt);
+            }
+        });
 
         btnEmpleado.setBackground(new java.awt.Color(157, 189, 221));
         btnEmpleado.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -101,6 +106,11 @@ public class FrmMenuNomina extends javax.swing.JDialog {
         btnEmpleado.setContentAreaFilled(false);
         btnEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEmpleado.setFocusPainted(false);
+        btnEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmpleadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,12 +152,23 @@ public class FrmMenuNomina extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnGenNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenNominaActionPerformed
-      FrmNomina nomina=new FrmNomina(this,true);
-       nomina.setLocationRelativeTo(this);
-       nomina.setVisible(true);
+        FrmNomina nomina = new FrmNomina(this, true);
+        nomina.setLocationRelativeTo(this);
+        nomina.setVisible(true);
     }//GEN-LAST:event_btnGenNominaActionPerformed
 
-   
+    private void btnEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadoActionPerformed
+        FrmEmpleado empleado = new FrmEmpleado(this, true);
+        empleado.setLocationRelativeTo(this);
+        empleado.setVisible(true);
+    }//GEN-LAST:event_btnEmpleadoActionPerformed
+
+    private void btnDeduccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeduccionesActionPerformed
+        FrmDeduccion ded = new FrmDeduccion(this, true);
+        ded.setLocationRelativeTo(this);
+        ded.setVisible(true);
+    }//GEN-LAST:event_btnDeduccionesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeducciones;

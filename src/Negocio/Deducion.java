@@ -5,45 +5,57 @@
  */
 package Negocio;
 
+import java.util.Date;
+
 /**
  *
  * @author delvy
  */
 public class Deducion {
-    private int id_empleado;
+    
+    private int idEmpleado;
     private String descripcion;
-    private float porciento;
+    private double monto;
+    private Date fecha;
 
-    public Deducion(int id_empleado, String descripcion, float monto) {
-        this.id_empleado = id_empleado;
+    public Deducion(int id_empleado, String descripcion, double monto) {
+        this.idEmpleado = id_empleado;
         this.descripcion = descripcion;
-        this.porciento = monto;
+        this.monto = monto;
     }
       public Deducion() {
     }
 
-    public int getId_empleado() {
-        return id_empleado;
+    public int getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(int idEmpleado) {
+        this.idEmpleado = idEmpleado;
     }
 
     public String getDescripcion() {
         return descripcion;
     }
 
-    public float getMonto() {
-        return porciento;
-    }
-
-    public void setId_empleado(int id_empleado) {
-        this.id_empleado = id_empleado;
-    }
-
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public void setMonto(float monto) {
-        this.porciento = monto;
+    public double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
       
       

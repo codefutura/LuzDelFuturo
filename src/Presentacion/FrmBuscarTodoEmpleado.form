@@ -61,8 +61,7 @@
                       <Component id="tBuscar" min="-2" pref="306" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnBuscar" min="-2" pref="44" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnAgregar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -73,12 +72,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="btnBuscar" alignment="0" max="32767" attributes="0"/>
-                      <Component id="tBuscar" alignment="0" pref="30" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="btnAgregar" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnBuscar" alignment="0" max="32767" attributes="0"/>
+                  <Component id="tBuscar" alignment="0" pref="30" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="154" max="-2" attributes="0"/>
@@ -112,7 +108,7 @@
               <Table columnCount="4" rowCount="0">
                 <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
                 <Column editable="false" title="Nombre" type="java.lang.Object"/>
-                <Column editable="false" title="Direcci&#xf3;n" type="java.lang.Object"/>
+                <Column editable="false" title="C&#xe9;dula" type="java.lang.Object"/>
                 <Column editable="false" title="Tel&#xe9;fono" type="java.lang.Object"/>
               </Table>
             </Property>
@@ -191,18 +187,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tBuscarActionPerformed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tBuscarKeyReleased"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnAgregar">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="SansSerif" size="12" style="0"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Imagenes/new.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Nuevo docente"/>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>

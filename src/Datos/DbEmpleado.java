@@ -40,7 +40,6 @@ public class DbEmpleado {
             pt.setInt(9, e.getTipoEmpleado());
             insertada = pt.executeUpdate();
             pt.close();
-
         } catch (SQLException a) {
             JOptionPane.showMessageDialog(null, a.getMessage());
         } finally {
@@ -103,6 +102,31 @@ public class DbEmpleado {
         }
         return listaData;
     }
+    
+    
+     ////////// Utlizar para cargar los datos en rejilla //////////
+    public static ArrayList buscarTodoEmpleado(String buscar) {
+        ConectarBd con = new ConectarBd();
+        ResultSet resultado;
+        String Query = "Select * from tbl_empleado Where nombre LIKE '%" + buscar + "%';";
+        resultado = con.getQuery(Query);
+        ArrayList<Object> listaData = new ArrayList<>();
+        try {
+            while (resultado.next()) {
+                listaData.add(new Object[]{resultado.getInt("id_empleado"), resultado.getString("nombre"), resultado.getString("cedula"),
+                     resultado.getString("telefono")});
+            }
+            resultado.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            con.setCerrar();
+            con = null;
+        }
+        return listaData;
+    }
+    
     
     
      public static ArrayList getEmpleadosEnNomina(int mes, int anio) {
