@@ -32,9 +32,9 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jScrollPane2" min="-2" pref="333" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="btnPublicar" min="-2" pref="99" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="btnPublicar" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btnAnularPublicacion" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -73,12 +73,12 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane2" pref="229" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane2" pref="225" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnPublicar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnAnularPublicacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnPublicar" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                          <Component id="btnAnularPublicacion" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -154,10 +154,11 @@
               <Color blue="33" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="0">
+              <Table columnCount="4" rowCount="0">
                 <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
                 <Column editable="false" title="Asignatura" type="java.lang.Object"/>
-                <Column editable="true" title="Calificar" type="java.lang.Object"/>
+                <Column editable="true" title="Calificar" type="java.lang.Integer"/>
+                <Column editable="true" title="Observacion" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -189,6 +190,8 @@
           </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTableAsignaturaFocusLost"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableAsignaturaMouseClicked"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTableAsignaturaKeyPressed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -196,9 +199,13 @@
     <Component class="javax.swing.JButton" name="btnPublicar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="SansSerif" size="12" style="1"/>
+          <Font name="SansSerif" size="12" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Publicar"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/nota.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Publicar notas"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPublicarActionPerformed"/>
@@ -207,7 +214,10 @@
     <Component class="javax.swing.JButton" name="btnAnularPublicacion">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="SansSerif" size="12" style="1"/>
+          <Font name="SansSerif" size="12" style="0"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/delete_1.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Anular publicaci&#xf3;n"/>
       </Properties>
@@ -345,6 +355,10 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Imagenes/binoculars.png"/>
         </Property>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
+        <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarDocenteActionPerformed"/>

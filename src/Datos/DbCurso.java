@@ -27,7 +27,7 @@ public class DbCurso {
             pt.setInt(2, c.getTanda());
             pt.setInt(3, c.getCapacidad());
             pt.setInt(4, c.getGrado());
-            pt.setString(5, null);
+            pt.setInt(5, c.getIdDocente());
             pt.setString(6, c.getAnioEscolar());
             pt.setString(7, c.getNombreTanda());
              pt.setString(8, c.getNombreGrado());

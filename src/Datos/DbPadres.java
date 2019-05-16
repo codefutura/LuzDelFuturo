@@ -49,7 +49,8 @@ public class DbPadres {
             pt.close();
 
         } catch (SQLException a) {
-            Logger.getLogger(DbEstudiante.class.getName()).log(Level.SEVERE, null, a);
+            
+            JOptionPane.showMessageDialog(null, a.getErrorCode());
         } finally {
             con.setCerrar();
             con = null;

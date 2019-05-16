@@ -5,6 +5,7 @@ import Datos.DbEstudiante;
 import Datos.DbNota;
 import Datos.dbAsignatura;
 import Negocio.Nota;
+import java.awt.event.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -103,12 +104,19 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Asignatura", "Calificar"
+                "Código", "Asignatura", "Calificar", "Observacion"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -121,17 +129,30 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
                 jTableAsignaturaFocusLost(evt);
             }
         });
+        jTableAsignatura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableAsignaturaMouseClicked(evt);
+            }
+        });
+        jTableAsignatura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTableAsignaturaKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableAsignatura);
 
-        btnPublicar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        btnPublicar.setText("Publicar");
+        btnPublicar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        btnPublicar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/nota.png"))); // NOI18N
+        btnPublicar.setText("Publicar notas");
+        btnPublicar.setToolTipText("");
         btnPublicar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPublicarActionPerformed(evt);
             }
         });
 
-        btnAnularPublicacion.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        btnAnularPublicacion.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        btnAnularPublicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/delete_1.png"))); // NOI18N
         btnAnularPublicacion.setText("Anular publicación");
 
         jPanel8.setBackground(new java.awt.Color(0, 204, 51));
@@ -200,6 +221,8 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
 
         btnBuscarDocente.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         btnBuscarDocente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/binoculars.png"))); // NOI18N
+        btnBuscarDocente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarDocente.setFocusPainted(false);
         btnBuscarDocente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarDocenteActionPerformed(evt);
@@ -250,9 +273,9 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnPublicar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnPublicar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnAnularPublicacion))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,11 +307,11 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnPublicar)
-                            .addComponent(btnAnularPublicacion))))
+                            .addComponent(btnPublicar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAnularPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(20, 20, 20))
         );
 
@@ -296,14 +319,14 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDocenteActionPerformed
- FrmBuscarEmpleado docente = new FrmBuscarEmpleado(this, true);
+        FrmBuscarEmpleado docente = new FrmBuscarEmpleado(this, true);
         docente.setLocationRelativeTo(null);
         docente.setVisible(true);
-        int idDocente=0;
+        int idDocente = 0;
 
         if (docente.confirmarSeleccion > 0) {
             idDocente = Integer.parseInt(String.valueOf(docente.jTableEmpleado.getValueAt(docente.jTableEmpleado.getSelectedRow(), 0)));
-            tNombreDocente.setText( String.valueOf(docente.jTableEmpleado.getValueAt(docente.jTableEmpleado.getSelectedRow(), 1)));
+            tNombreDocente.setText(String.valueOf(docente.jTableEmpleado.getValueAt(docente.jTableEmpleado.getSelectedRow(), 1)));
         }
         cargaCusosDocente(idDocente);
     }//GEN-LAST:event_btnBuscarDocenteActionPerformed
@@ -330,7 +353,16 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Error, seleccione el estudiante");
             return;
         }
+
+        if (revisarNotas() == false) {
+            //OptionPane.showMessageDialog(this, "Algunas notas no han sigo asignadas!");
+      
+             JOptionPane.showMessageDialog(this, "Algunas notas no han sigo asignadas!", "ERROR",1);
+            return;
+        }
+
         publicarNota();
+        JOptionPane.showMessageDialog(this, "Publicacion exitosa !");
 
         DefaultTableModel mod = (DefaultTableModel) jTableEstudiante.getModel();
         mod.removeRow(jTableEstudiante.getSelectedRow());
@@ -370,6 +402,21 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
             limpiarTablaMateria();
         }
     }//GEN-LAST:event_jTableEstudianteKeyReleased
+
+    private void jTableAsignaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAsignaturaMouseClicked
+        if (evt.getClickCount() == 2) {
+            asignarNota();
+        }
+
+    }//GEN-LAST:event_jTableAsignaturaMouseClicked
+
+    private void jTableAsignaturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableAsignaturaKeyPressed
+
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            asignarNota();
+        }
+
+    }//GEN-LAST:event_jTableAsignaturaKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -431,6 +478,9 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
         colModel.getColumn(0).setPreferredWidth(8);
         colModel.getColumn(1).setPreferredWidth(150);
         colModel.getColumn(2).setPreferredWidth(8);
+        colModel.getColumn(3).setMaxWidth(0);
+        colModel.getColumn(3).setMinWidth(0);
+        colModel.getColumn(3).setPreferredWidth(0);
         jTableAsignatura.setColumnModel(colModel);
         jTableAsignatura.getTableHeader().setReorderingAllowed(false);
     }
@@ -456,15 +506,60 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
             try {
                 idAsignatura = Integer.parseInt(String.valueOf(jTableAsignatura.getValueAt(i, 0)));
                 calificacion = Integer.parseInt(String.valueOf(jTableAsignatura.getValueAt(i, 2)));
+
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
+                JOptionPane.showMessageDialog(this, e.getMessage());
                 return;
             }
+            String observacion = String.valueOf(jTableAsignatura.getValueAt(i, 3));
             n.setIdAsignatura(idAsignatura);
             n.setCalificacion(calificacion);
+            n.setObservacion(observacion);
             //Registrar en la base de datos
-            dbn.insertarPublicacionDeNota(n);
+            if (dbn.insertarPublicacionDeNota(n) > 0) {
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Error, al intentar publicar");
+                return;
+
+            }
         }
     }
 
+    private void asignarNota() {
+
+        if (this.idEstudianteSelecionado == 0) {
+            JOptionPane.showMessageDialog(this, "Favoer seleccionar el estudiante !!");
+            return;
+        }
+        FrmNota nota = new FrmNota(this, true);
+        nota.setLocationRelativeTo(this);
+        nota.tAsignatura.setText(String.valueOf(jTableAsignatura.getValueAt(jTableAsignatura.getSelectedRow(), 1)));
+        if (!"null".equals(String.valueOf(jTableAsignatura.getValueAt(jTableAsignatura.getSelectedRow(), 2)))) {
+            nota.tCalificar.setText(String.valueOf(jTableAsignatura.getValueAt(jTableAsignatura.getSelectedRow(), 2)));
+        }
+        if (!"null".equals(String.valueOf(jTableAsignatura.getValueAt(jTableAsignatura.getSelectedRow(), 3)))) {
+            nota.tObservacion.setText(String.valueOf(jTableAsignatura.getValueAt(jTableAsignatura.getSelectedRow(), 3)));
+        }
+
+        nota.setVisible(true);
+
+        if (nota.aceptada) {
+            jTableAsignatura.setValueAt(nota.tCalificar.getValue(), jTableAsignatura.getSelectedRow(), 2);
+            jTableAsignatura.setValueAt(nota.tObservacion.getText(), jTableAsignatura.getSelectedRow(), 3);
+        }
+    }
+
+    private boolean revisarNotas() {
+        boolean estado = false;
+        for (int i = 0; i < jTableAsignatura.getRowCount(); i++) {
+            if (!"null".equals(String.valueOf(jTableAsignatura.getValueAt(i, 2)))) {
+                estado = false;
+                break;
+            } else {
+                estado = true;
+            }
+        }
+        return estado;
+    }
 }

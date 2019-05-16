@@ -5,13 +5,23 @@
  */
 package Presentacion;
 
+import Datos.ConectarBd;
 import Datos.DbCxc;
 import Datos.DbRecibo;
 import Negocio.Cxc;
 import Negocio.Recibo;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRParameter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -189,6 +199,9 @@ public class FrmRecibo extends javax.swing.JDialog {
         tMonto.setCaretColor(new java.awt.Color(0, 51, 255));
         tMonto.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         tMonto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tMontoKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tMontoKeyReleased(evt);
             }
@@ -278,6 +291,7 @@ public class FrmRecibo extends javax.swing.JDialog {
         );
 
         btnAceptar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save_close.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAceptar.setContentAreaFilled(false);
@@ -288,6 +302,7 @@ public class FrmRecibo extends javax.swing.JDialog {
         });
 
         btnCancelar.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/delete_1.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCancelar.setContentAreaFilled(false);
@@ -335,6 +350,12 @@ public class FrmRecibo extends javax.swing.JDialog {
     }//GEN-LAST:event_tEstudianteKeyReleased
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        double importe = validarDoubleTexto(tMonto);
+        if (importe > validarDoubleTexto(tBalance)) {
+            JOptionPane.showMessageDialog(this, "El valor recibido no debe ser mayor al balance");
+            return;
+        }
+
         tDescuento.setValue(getDescuento(validarDoubleTexto(tMonto)));
 
         if (validarDoubleTexto(tMonto) == 0) {
@@ -343,15 +364,16 @@ public class FrmRecibo extends javax.swing.JDialog {
             return;
         }
         setRecibo();
-        if (dbr.insertarRecibo(recibo) > 0) {
-            JOptionPane.showMessageDialog(this, "Recibo creado exitosamente !!! /n B ");
+        long idRecibo = dbr.insertarRecibo(recibo);
+        if (idRecibo > 0) {
+            JOptionPane.showMessageDialog(this, "Recibo creado exitosamente !!! ");
+            imprimeInfoMDI("codigo", "Recibo de ingreso", "Reportes/rpRecibo.jasper", idRecibo);
         }
-        
-        dbr=null;
-        c=null;
-        recibo=null;
-        dbCP=null;
-        
+        dbr = null;
+        c = null;
+        recibo = null;
+        dbCP = null;
+
         this.dispose();
 
 
@@ -367,8 +389,25 @@ public class FrmRecibo extends javax.swing.JDialog {
     }//GEN-LAST:event_tPadreKeyReleased
 
     private void tMontoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tMontoKeyReleased
-        tDescuento.setValue(getDescuento(validarDoubleTexto(tMonto)));
+
+        double importe = validarDoubleTexto(tMonto);
+
+        if (importe > validarDoubleTexto(tBalance)) {
+            JOptionPane.showMessageDialog(this, "El valor recibido no debe ser mayor al balance");
+            return;
+        }
+        tDescuento.setValue(getDescuento(importe));
+        double mes = 0;
+        if (importe > 0) {
+            mes = importe / c.getMensualidad();
+        }
+
+        tConcepto.setText("PAGO DE " + (mes > 1 ? ((int) mes) + " MESES " : " UN MES."));
     }//GEN-LAST:event_tMontoKeyReleased
+
+    private void tMontoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tMontoKeyPressed
+
+    }//GEN-LAST:event_tMontoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -463,6 +502,29 @@ public class FrmRecibo extends javax.swing.JDialog {
         recibo.setNumeroRecibo(tNoRecibo.getText());
         recibo.setImporteDto(validarDoubleTexto(tDescuento));
 
+    }
+
+    public void imprimeInfoMDI(String par1, String titulo, String informe, long idRecibo) {
+        try {
+            Map parametro = new HashMap();
+            parametro.put(par1, idRecibo);
+            parametro.put(JRParameter.REPORT_LOCALE, Locale.ENGLISH);
+            JasperPrint jasperprint = JasperFillManager.fillReport(this.getClass().getClassLoader().getResourceAsStream(informe), parametro, new ConectarBd().getConexion());
+            JasperViewer visor = new JasperViewer(jasperprint, false);
+            JDialog mostrarInforme = new JDialog(this);
+            mostrarInforme.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            mostrarInforme.setContentPane(visor.getContentPane());
+            mostrarInforme.setSize(visor.getSize());
+            mostrarInforme.setTitle(titulo);
+            mostrarInforme.setModal(true);
+            mostrarInforme.setVisible(true);
+            mostrarInforme.dispose();
+            parametro = null;
+            visor = null;
+            mostrarInforme = null;
+        } catch (JRException e) {
+            JOptionPane.showMessageDialog(this, e.getStackTrace());
+        }
     }
 
 }

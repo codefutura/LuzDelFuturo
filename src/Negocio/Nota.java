@@ -18,6 +18,7 @@ public class Nota {
     private Date fecha;
     private int idAsignatura;
     private int calificacion;
+    private String observacion;
 
     public Nota(int idNota, int idEstudiante, int idCurso, Date fecha, int idAsignatura, int calificacion) {
         this.idNota = idNota;
@@ -78,6 +79,14 @@ public class Nota {
 
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
+    }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
     }
     
     
