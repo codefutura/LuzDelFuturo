@@ -9,6 +9,7 @@ public class Usuario {
     private String nombre;
     private String clave;
     private Integer idUsuario;
+    private int tipoUsuario;
   
 
     public Usuario(String nombre, String clave,int id_odontologo) {
@@ -49,5 +50,15 @@ public class Usuario {
         this.clave = clave;
     }
 
+    public int getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(int tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    
+    
     
 }

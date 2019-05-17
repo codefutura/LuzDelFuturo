@@ -1,4 +1,3 @@
-
 package Presentacion;
 
 /**
@@ -29,7 +28,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnNotas = new javax.swing.JButton();
         btnCxc = new javax.swing.JButton();
         btnNomina = new javax.swing.JButton();
-        btnNomina2 = new javax.swing.JButton();
+        btnParametros = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -133,23 +133,41 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jToolBar1.add(btnNomina);
 
-        btnNomina2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        btnNomina2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/door50.png"))); // NOI18N
-        btnNomina2.setText("S a l i r");
-        btnNomina2.setBorderPainted(false);
-        btnNomina2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnNomina2.setFocusable(false);
-        btnNomina2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnNomina2.setMaximumSize(new java.awt.Dimension(96, 81));
-        btnNomina2.setMinimumSize(new java.awt.Dimension(96, 81));
-        btnNomina2.setOpaque(false);
-        btnNomina2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnNomina2.addActionListener(new java.awt.event.ActionListener() {
+        btnParametros.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        btnParametros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/support.png"))); // NOI18N
+        btnParametros.setText("Parametros");
+        btnParametros.setBorderPainted(false);
+        btnParametros.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnParametros.setFocusable(false);
+        btnParametros.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnParametros.setMaximumSize(new java.awt.Dimension(96, 81));
+        btnParametros.setMinimumSize(new java.awt.Dimension(96, 81));
+        btnParametros.setOpaque(false);
+        btnParametros.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnParametros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNomina2ActionPerformed(evt);
+                btnParametrosActionPerformed(evt);
             }
         });
-        jToolBar1.add(btnNomina2);
+        jToolBar1.add(btnParametros);
+
+        btnSalir.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/door50.png"))); // NOI18N
+        btnSalir.setText("S a l i r");
+        btnSalir.setBorderPainted(false);
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalir.setFocusable(false);
+        btnSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalir.setMaximumSize(new java.awt.Dimension(96, 81));
+        btnSalir.setMinimumSize(new java.awt.Dimension(96, 81));
+        btnSalir.setOpaque(false);
+        btnSalir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnSalir);
 
         jPanel1.setBackground(new java.awt.Color(87, 140, 186));
 
@@ -241,38 +259,45 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstudianteActionPerformed
-     FrmListaEstudiantes mEstudiante = new FrmListaEstudiantes(this, true);
-     mEstudiante.setLocationRelativeTo(this);
-     mEstudiante.setVisible(true);
+        FrmListaEstudiantes mEstudiante = new FrmListaEstudiantes(this, true);
+        mEstudiante.setLocationRelativeTo(this);
+        mEstudiante.setVisible(true);
     }//GEN-LAST:event_btnEstudianteActionPerformed
 
     private void btnCxcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCxcActionPerformed
-      FrmMenuCxc cxc = new FrmMenuCxc(this, true);
-      cxc.setLocationRelativeTo(this);
-      cxc.setVisible(true);
+        FrmMenuCxc cxc = new FrmMenuCxc(this, true);
+        cxc.setLocationRelativeTo(this);
+        cxc.setVisible(true);
     }//GEN-LAST:event_btnCxcActionPerformed
 
     private void btnCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCursosActionPerformed
-       FrmRegistroCurso curso=new FrmRegistroCurso(this, true);
-       curso.setLocationRelativeTo(null);
-       curso.setVisible(true);
+        FrmRegistroCurso curso = new FrmRegistroCurso(this, true);
+        curso.setLocationRelativeTo(null);
+        curso.setVisible(true);
     }//GEN-LAST:event_btnCursosActionPerformed
 
     private void btnNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotasActionPerformed
-      FrmPublicarNotas publicar=new FrmPublicarNotas(this, true);
-      publicar.setLocationRelativeTo(this);
-      publicar.setVisible(true);
+        FrmPublicarNotas publicar = new FrmPublicarNotas(this, true);
+        publicar.setLocationRelativeTo(this);
+        publicar.setVisible(true);
     }//GEN-LAST:event_btnNotasActionPerformed
 
-    private void btnNomina2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNomina2ActionPerformed
-       System.exit(0);
-    }//GEN-LAST:event_btnNomina2ActionPerformed
+    private void btnParametrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnParametrosActionPerformed
+        FrmMenuParametro par = new FrmMenuParametro(this, true);
+        par.setLocationRelativeTo(this);
+        par.setVisible(true);
+
+    }//GEN-LAST:event_btnParametrosActionPerformed
 
     private void btnNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNominaActionPerformed
-       FrmMenuNomina nomina=new FrmMenuNomina(this,true);
-       nomina.setLocationRelativeTo(this);
-       nomina.setVisible(true);
+        FrmMenuNomina nomina = new FrmMenuNomina(this, true);
+        nomina.setLocationRelativeTo(this);
+        nomina.setVisible(true);
     }//GEN-LAST:event_btnNominaActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+       System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -280,8 +305,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCxc;
     private javax.swing.JButton btnEstudiante;
     private javax.swing.JButton btnNomina;
-    private javax.swing.JButton btnNomina2;
     private javax.swing.JButton btnNotas;
+    private javax.swing.JButton btnParametros;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;

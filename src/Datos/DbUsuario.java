@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,11 +42,13 @@ public class DbUsuario {
      return codigo;
     }
     
+   
+    
      public static boolean getIdUsuario(String clave,String nombre) {
       // String[] codigo=new String[6];
         boolean encontrado=false;
         String query = ((new StringBuilder()))
-                .append("Select id_usuario,nombre,clave from tbl_usuario "
+                .append("Select id_usuario,nombre,clave,tipo from tbl_usuario "
                         + "where clave=AES_ENCRYPT('")
                 .append(clave).append("','llave') and tbl_usuario.nombre='" )
                 .append(nombre).append( "';").toString();
@@ -69,12 +72,18 @@ public class DbUsuario {
         
     public void crearUsuario(Usuario c) {
         ConectarBd con = new ConectarBd();
-        String consulta="INSERT INTO tbl_usuario (nombre, clave) VALUES ( ?,AES_ENCRYPT(?,'llave'));";
+        String consulta;
+        if(c.getTipoUsuario()==2)
+             consulta="INSERT INTO tbl_usuario (nombre, clave,tipo) VALUES ( ?,?,?);";
+        else
+             consulta="INSERT INTO tbl_usuario (nombre, clave,tipo) VALUES ( ?,AES_ENCRYPT(?,'llave'),?);";
+        
         PreparedStatement ps;
         try {
             ps=con.getConexion().prepareStatement(consulta);
             ps.setString(1,c.getNombre());
             ps.setString(2, c.getClave());
+             ps.setInt(3, c.getTipoUsuario());
             ps.executeUpdate();
             ps.close();
         } catch (SQLException ex) {
@@ -83,16 +92,24 @@ public class DbUsuario {
             con.setCerrar();
         }   
     }   
+    
  
   
     public void modificarUsuario(Usuario c,Integer idUsuario) {
         ConectarBd con = new ConectarBd();
-        String consulta="UPDATE tbl_usuario SET nombre=?, clave=AES_ENCRYPT(?,'llave') WHERE id_usuario=?;";
+        String consulta=null;
+        
+        if(c.getTipoUsuario()==2)
+            consulta="UPDATE tbl_usuario SET nombre=?,clave=?,tipo=? WHERE id_usuario=?;";
+        else
+            consulta="UPDATE tbl_usuario SET nombre=?, clave=AES_ENCRYPT(?,'llave'),tipo=? WHERE id_usuario=?;";
+        
         PreparedStatement ps;
         try {
             ps=con.getConexion().prepareStatement(consulta);
             ps.setString(1,c.getNombre());
             ps.setString(2, c.getClave());
+            ps.setInt(3, c.getTipoUsuario());     
             ps.setInt(4, idUsuario);
             ps.executeUpdate();
             ps.close();
@@ -118,14 +135,19 @@ public class DbUsuario {
     public  void usuarioPorCodigo(Integer codigoUser,Usuario c){
         ConectarBd con= new ConectarBd();
         ResultSet rs;
-        String Query="SELECT id_usuario, nombre, AES_DECRYPT(clave,'llave') as clave FROM tbl_usuario"
+        String Query="SELECT id_usuario, nombre,clave as pass, AES_DECRYPT(clave,'llave') as clave, tipo FROM tbl_usuario"
                 + " Where id_usuario='"+codigoUser+"';";
         rs=con.getQuery(Query);
         try {
             while(rs.next()){
                 c.setIdUsuario(codigoUser);
                 c.setNombre(rs.getString("nombre"));
-                c.setClave(rs.getString("clave"));
+                if(rs.getInt("tipo")==2)
+                    c.setClave(rs.getString("pass"));
+                else
+                    c.setClave(rs.getString("clave"));
+                
+                c.setTipoUsuario(rs.getInt("tipo"));
             }
             rs.close();
               
