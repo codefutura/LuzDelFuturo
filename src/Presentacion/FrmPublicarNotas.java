@@ -370,11 +370,10 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Error, seleccione el estudiante");
             return;
         }
-
         if (revisarNotas() == false) {
             //OptionPane.showMessageDialog(this, "Algunas notas no han sigo asignadas!");
-      
-             JOptionPane.showMessageDialog(this, "Algunas notas no han sigo asignadas!", "ERROR",1);
+
+            JOptionPane.showMessageDialog(this, "Algunas notas no han sigo asignadas!", "ERROR", 1);
             return;
         }
 
@@ -575,7 +574,7 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
     private boolean revisarNotas() {
         boolean estado = false;
         for (int i = 0; i < jTableAsignatura.getRowCount(); i++) {
-            if (!"null".equals(String.valueOf(jTableAsignatura.getValueAt(i, 2)))) {
+            if ("null".equals(String.valueOf(jTableAsignatura.getValueAt(i, 2)))) {
                 estado = false;
                 break;
             } else {
