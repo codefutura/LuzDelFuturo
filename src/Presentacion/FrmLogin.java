@@ -2,6 +2,7 @@
 package Presentacion;
 
 import Datos.DbUsuario;
+import Negocio.ParametrosFijos;
 import javax.swing.JOptionPane;
 
 /**
@@ -152,15 +153,16 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-    boolean si=DbUsuario.getIdUsuario(String.valueOf(tClave.getPassword()), tNombre.getText());
-    if(si==false){
+    int si[]=DbUsuario.getIdUsuario(String.valueOf(tClave.getPassword()), tNombre.getText());
+    if(si[0]==0){
         JOptionPane.showMessageDialog(this, "El usuario o contraseña incorrecto") ;   
         tNombre.requestFocus();
         tClave.setText("");
         tNombre.setText("");
         return;
     }
-        
+      ParametrosFijos.setNombreUsuario(tNombre.getText());
+      ParametrosFijos.setAutorizacion(si[1]);
       FrmPrincipal pv = new FrmPrincipal();
       pv.setLocationRelativeTo(null);
       pv.setExtendedState(MAXIMIZED_BOTH);

@@ -4,6 +4,7 @@ package Datos;
 import Negocio.Usuario;
 import java.awt.Component;
 import java.awt.HeadlessException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,9 +45,9 @@ public class DbUsuario {
     
    
     
-     public static boolean getIdUsuario(String clave,String nombre) {
-      // String[] codigo=new String[6];
-        boolean encontrado=false;
+     public static int[] getIdUsuario(String clave,String nombre) {
+      int[] codigo=new int[2];
+        //boolean encontrado=false;
         String query = ((new StringBuilder()))
                 .append("Select id_usuario,nombre,clave,tipo from tbl_usuario "
                         + "where clave=AES_ENCRYPT('")
@@ -57,7 +58,9 @@ public class DbUsuario {
             ResultSet resultado ;
             resultado=con.getQuery(query);  
             while (resultado.next()) { 
-                encontrado=true;
+               // encontrado=true;
+                codigo[0]=1;
+                codigo[1]=resultado.getInt("tipo");
                 break;
             }
             resultado.close();
@@ -67,7 +70,7 @@ public class DbUsuario {
            con.setCerrar();
            con=null;
         }    
-     return encontrado;
+     return codigo;
     }
         
     public void crearUsuario(Usuario c) {

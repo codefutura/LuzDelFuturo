@@ -1,5 +1,7 @@
 package Presentacion;
 
+import Negocio.ParametrosFijos;
+
 /**
  *
  * @author codefutura
@@ -11,6 +13,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
      */
     public FrmPrincipal() {
         initComponents();
+        setAutorizar();
+
     }
 
     /**
@@ -296,7 +300,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNominaActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
 
@@ -316,4 +320,42 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
+
+    private void setAutorizar() {
+        if (ParametrosFijos.getAutorizacion() == 1) {
+            btnNomina.setEnabled(false);
+            btnParametros.setEnabled(false);
+        }
+        if (ParametrosFijos.getAutorizacion() == 3) {
+            btnNomina.setEnabled(false);
+            btnCursos.setEnabled(false);
+            btnCxc.setEnabled(false);
+            btnEstudiante.setEnabled(false);
+            btnParametros.setEnabled(false);
+        }
+        if (ParametrosFijos.getAutorizacion() == 4) {
+            btnCursos.setEnabled(false);
+            btnCxc.setEnabled(false);
+            btnEstudiante.setEnabled(false);
+            btnParametros.setEnabled(false);
+            btnNotas.setEnabled(false);
+        }
+
+        if (ParametrosFijos.getAutorizacion() == 5) {
+            btnCxc.setEnabled(false);
+            btnEstudiante.setEnabled(false);
+            btnParametros.setEnabled(false);
+            btnNotas.setEnabled(false);
+            btnNomina.setEnabled(false);
+        }
+
+        if (ParametrosFijos.getAutorizacion() == 6) {
+            btnParametros.setEnabled(false);
+            btnNotas.setEnabled(false);
+            btnNomina.setEnabled(false);
+            btnCxc.setEnabled(false);
+        }
+
+    }
+
 }
