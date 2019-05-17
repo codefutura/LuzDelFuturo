@@ -117,7 +117,7 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel2.setText("Aula");
 
-        tAula.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        tAula.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         tAula.setForeground(new java.awt.Color(0, 51, 255));
         tAula.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 

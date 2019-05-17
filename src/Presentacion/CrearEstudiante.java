@@ -28,8 +28,7 @@ public class CrearEstudiante extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
-    
+
     public CrearEstudiante(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -316,6 +315,10 @@ public class CrearEstudiante extends javax.swing.JDialog {
             dbe.setInsertarEstudiante(e);
         }
 
+        dbP = null;
+        p = null;
+        dbe = null;
+        e = null;
         this.dispose();
 
 
@@ -354,7 +357,7 @@ public class CrearEstudiante extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCrearMadreActionPerformed
 
     private void btnBuscaPadreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaPadreActionPerformed
-        FrmBuscarPadres busPadres = new FrmBuscarPadres(this, true,false);
+        FrmBuscarPadres busPadres = new FrmBuscarPadres(this, true, false);
         busPadres.setLocationRelativeTo(this);
         busPadres.setVisible(true);
         if (busPadres.getIdSeleccion() > 0) {
@@ -364,7 +367,7 @@ public class CrearEstudiante extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBuscaPadreActionPerformed
 
     private void btnBuscaMadreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaMadreActionPerformed
-        FrmBuscarPadres busPadres = new FrmBuscarPadres(this, true,false);
+        FrmBuscarPadres busPadres = new FrmBuscarPadres(this, true, false);
         busPadres.setLocationRelativeTo(this);
         busPadres.setVisible(true);
         if (busPadres.getIdSeleccion() > 0) {

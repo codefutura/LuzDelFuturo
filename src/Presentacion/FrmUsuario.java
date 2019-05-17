@@ -128,7 +128,7 @@ public class FrmUsuario extends javax.swing.JDialog {
         jLabel5.setToolTipText("");
 
         cbTipoUsuario.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        cbTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Secretaria", "Estudiante", "Docente", "Recursos humano", "Coordiandor", "Registro", " " }));
+        cbTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Secretaria", "Estudiante", "Docente", "Recursos humano", "Coordiandor", "Registro" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

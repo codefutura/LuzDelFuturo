@@ -230,7 +230,7 @@
           <Font name="SansSerif" size="12" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="8">
+          <StringArray count="7">
             <StringItem index="0" value="Administrador"/>
             <StringItem index="1" value="Secretaria"/>
             <StringItem index="2" value="Estudiante"/>
@@ -238,7 +238,6 @@
             <StringItem index="4" value="Recursos humano"/>
             <StringItem index="5" value="Coordiandor"/>
             <StringItem index="6" value="Registro"/>
-            <StringItem index="7" value=" "/>
           </StringArray>
         </Property>
       </Properties>

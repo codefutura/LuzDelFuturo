@@ -52,7 +52,7 @@ public class DbUsuario {
                 .append("Select id_usuario,nombre,clave,tipo from tbl_usuario "
                         + "where clave=AES_ENCRYPT('")
                 .append(clave).append("','llave') and tbl_usuario.nombre='" )
-                .append(nombre).append( "';").toString();
+                .append(nombre).append( "' and usuario_web=0;").toString();
         ConectarBd con = new ConectarBd();
         try {
             ResultSet resultado ;

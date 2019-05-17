@@ -258,6 +258,8 @@ public class FrmPadres extends javax.swing.JDialog {
       
        this.codigoPadre=dbp.setInsertarPadres(p);  
        
+        dbp=null;
+        p =null;
        setVisible(false);
        
     }//GEN-LAST:event_btnAceptarActionPerformed

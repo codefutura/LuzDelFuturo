@@ -479,9 +479,10 @@ public class FrmCxc extends javax.swing.JDialog {
             }
 
         }
-
+        c = null;
+        dbCP=null;
         this.aceptada = true;
-        setVisible(false);
+        dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
