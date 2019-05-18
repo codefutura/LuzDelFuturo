@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 
 import javax.swing.table.DefaultTableModel;
@@ -109,10 +110,10 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -370,15 +371,13 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Error, seleccione el estudiante");
             return;
         }
-        if (revisarNotas() == false) {
-            //OptionPane.showMessageDialog(this, "Algunas notas no han sigo asignadas!");
-
-            JOptionPane.showMessageDialog(this, "Algunas notas no han sigo asignadas!", "ERROR", 1);
+        if (revisarNotas() == false) {  
+            JOptionPane.showMessageDialog(this, "Algunas notas no han sigo asignadas!", "ERROR",0);
             return;
         }
 
         publicarNota();
-        JOptionPane.showMessageDialog(this, "Publicacion exitosa !");
+        JOptionPane.showMessageDialog(this, "Publicación exitosa !");
 
         DefaultTableModel mod = (DefaultTableModel) jTableEstudiante.getModel();
         mod.removeRow(jTableEstudiante.getSelectedRow());
@@ -574,7 +573,7 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
     private boolean revisarNotas() {
         boolean estado = false;
         for (int i = 0; i < jTableAsignatura.getRowCount(); i++) {
-            if ("null".equals(String.valueOf(jTableAsignatura.getValueAt(i, 2)))) {
+            if (validarInteger(i)==0) {
                 estado = false;
                 break;
             } else {
@@ -583,4 +582,17 @@ public class FrmPublicarNotas extends javax.swing.JDialog {
         }
         return estado;
     }
+    
+    
+    
+     private int validarInteger(int i) {
+        int valor = 0;
+        try {
+            valor = Integer.parseInt(String.valueOf(jTableAsignatura.getValueAt(i, 2)));
+        } catch (NumberFormatException e) {
+        }
+
+        return valor;
+    }
+     
 }

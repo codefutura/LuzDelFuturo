@@ -214,6 +214,7 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
 
         btnRetirar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnRetirar.setText("Retirar");
+        btnRetirar.setEnabled(false);
         btnRetirar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRetirarActionPerformed(evt);
@@ -285,6 +286,7 @@ public class FrmRegistroCurso extends javax.swing.JDialog {
 
         btnAgregar1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnAgregar1.setText("Inscribir");
+        btnAgregar1.setEnabled(false);
         btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregar1ActionPerformed(evt);

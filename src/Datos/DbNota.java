@@ -27,7 +27,8 @@ public class DbNota {
             } else {
                 ps.setDate(5, null);
             }
-            ps.setString(6, n.getObservacion());
+         
+            ps.setString(6, ("null".equals(n.getObservacion()))?"":n.getObservacion());
             insertada=ps.executeUpdate();
             ps.close();
         } catch (SQLException ex) {

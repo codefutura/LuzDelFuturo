@@ -117,7 +117,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Asiganci&#xf3;n de nota"/>
+            <Property name="text" type="java.lang.String" value="Asignaci&#xf3;n de nota"/>
           </Properties>
         </Component>
       </SubComponents>
